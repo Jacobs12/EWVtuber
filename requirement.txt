@@ -1,0 +1,5 @@
+pyrtmp
+numpy
+dlib
+pygame
+sounddevice
