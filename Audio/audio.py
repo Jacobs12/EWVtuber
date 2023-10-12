@@ -21,8 +21,9 @@ class audioManager(object):
         for dev in devs:
             device = dev['name']
             if 'VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)' in device:
-                devicename = devicename
+                devicename = device
         if devicename != '':
+            print(f'在设备{devicename}上播放\n')
             pygame.mixer.init(devicename=devicename)
         else:
             pygame.mixer.init()
