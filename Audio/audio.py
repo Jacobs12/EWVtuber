@@ -1,3 +1,14 @@
+'''
+Author: wolffy
+Date: 2023-10-11 17:00:16
+LastEditors: fengtao92 1440913385@qq.com
+LastEditTime: 2023-10-12 10:13:03
+FilePath: /EWVtuber/Audio/audio.py
+Description: 项目名称：虚拟主播软件
+版权所有：北京光线传媒股份有限公司
+技术支持：北京光线传媒股份有限公司
+Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved. 
+'''
 import pygame
 import sounddevice as sd
 
@@ -5,19 +16,21 @@ class audioManager(object):
     def __init__(self) -> None:
         # VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)
         # pygame.mixer.init(devicename='VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)')
-        pygame.mixer.init()
+        devs = sd.query_devices()
+        devicename = ''
+        for dev in devs:
+            device = dev['name']
+            if 'VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)' in device:
+                devicename = devicename
+        if devicename != '':
+            pygame.mixer.init(devicename=devicename)
+        else:
+            pygame.mixer.init()
+
         self.mixer = pygame.mixer
         self.player = self.mixer.music
 
     def play(self,filename:str = ''):
-        print('play')
-        devs = sd.query_devices()
-        print('声卡')
-        for dev in devs:
-            # print(dev['name'])
-            device = dev['name']
-            if 'Voice' in device:
-                print(device)
 
         # VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)
         # pygame.mixer.init(devicename='VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)')
