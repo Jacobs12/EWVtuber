@@ -1,4 +1,5 @@
 numpy
 pygame
 sounddevice
-
+gtts
+pyttsx3

@@ -17,7 +17,8 @@ import os
 if __name__ == '__main__':
 
     audio_manager = audioManager()
-    audio_manager.play(filename='Tmp/1.mp3')
+    audio_manager.play(filename='Buffer\\Audio\\speech.wav')
+    # audio_manager.play(filename='Tmp\\111.mp3')
     cmd_mananger = commandManager()
     
     history_cmd = ''
