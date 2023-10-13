@@ -36,8 +36,8 @@ class audioManager(object):
         # VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)
         # pygame.mixer.init(devicename='VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)')
         self.player.load(filename=filename)
-        self.player.set_volume(0.5)
-        self.player.play(5000)
+        self.player.set_volume(1.0)
+        self.player.play(1)
 
     def pause(self):
         self.player.pause()
