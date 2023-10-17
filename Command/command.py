@@ -2,7 +2,7 @@
 Author: wolffy
 Date: 2023-10-11 17:09:13
 LastEditors: fengtao92 1440913385@qq.com
-LastEditTime: 2023-10-11 18:26:25
+LastEditTime: 2023-10-16 18:22:10
 FilePath: /EWVtuber/Command/command.py
 Description: 项目名称：虚拟主播软件
 版权所有：北京光线传媒股份有限公司
@@ -31,4 +31,6 @@ class commandManager(object):
                 audio_manager.play()
         elif cmd == 'pause':
             audio_manager.pause()
-        
+
+
+            
