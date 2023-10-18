@@ -2,7 +2,7 @@
 Author: wolffy
 Date: 2023-10-11 16:42:53
 LastEditors: fengtao92 1440913385@qq.com
-LastEditTime: 2023-10-11 18:26:38
+LastEditTime: 2023-10-18 14:27:36
 FilePath: /EWVtuber/app.py
 Description: 项目名称：虚拟主播软件
 版权所有：北京光线传媒股份有限公司
@@ -13,28 +13,36 @@ Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved.
 from Audio.audio import audioManager
 from Command.command import commandManager
 import os
-from Speech.speech import Speaker
+from EWSpeech.speech import Speaker
 from Session.chatglm_session import ChatglmSession
+from Platform.bilibili_livedanmaku import bilibiliDanmaku
 
 if __name__ == '__main__':
 
     session = ChatglmSession()
 
     audio_manager = audioManager()
+    
     # audio_manager.play(filename='Buffer\\Audio\\speech.wav')
-    # audio_manager.play(filename='Tmp\\111.mp3')
-    cmd_mananger = commandManager()
+    # audio_manager.play(filename='Tmp/1.mp3')
+    cmd_mananger = commandManager(audio=audio_manager,session=session)
+    cmd_mananger.audio_player = audio_manager
+    cmd_mananger.session_manager = session
+    bilibili_manager = bilibiliDanmaku()
+    bilibili_manager.session = session
+    bilibili_manager.startServer()
     
 
     history_cmd = ''
     while True:
-        cmd = input(f'{history_cmd}\n请输入命令:\n')
+        # cmd = input(f'{history_cmd}\n请输入命令:\n')
+        cmd = input('>> ')
         history_cmd = cmd
         is_break = cmd_mananger.check_cmd(cmd=str(cmd))
         if is_break:
             break
         cmd_mananger.check_audio_cmd(cmd=str(cmd),audio_manager=audio_manager)
-        print(cmd)
+        # print(cmd)
         # os.system('clear')
 
         if 'speak' in cmd:

@@ -1,3 +1,14 @@
+'''
+Author: wolffy
+Date: 2023-10-16 16:55:56
+LastEditors: fengtao92 1440913385@qq.com
+LastEditTime: 2023-10-18 14:43:50
+FilePath: /EWVtuber/EWSpeech/speech.py
+Description: 项目名称：虚拟主播软件
+版权所有：北京光线传媒股份有限公司
+技术支持：北京光线传媒股份有限公司
+Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved. 
+'''
 import pyttsx3
 import io
 import sys
@@ -5,12 +16,14 @@ import os
  
 
 class Speaker(object):
+    
     output_path = 'Buffer\\Audio\\speech.wav'
 
     def __init__(self,text) -> None:
         self.text = text
 
     def speak(self,text:str):
+        print(sys.platform)
         try:
           os.remove(self.output_path)
         except:
@@ -35,9 +48,9 @@ class Speaker(object):
         # 预设要朗读的文本数据
         line = text #要播报的内容
         self.text = text
-        # engine.say(line)
+        engine.say(line)
 
-        engine.save_to_file(line, self.output_path)
+        # engine.save_to_file(line, self.output_path)
         
         # 朗读
         engine.runAndWait()
