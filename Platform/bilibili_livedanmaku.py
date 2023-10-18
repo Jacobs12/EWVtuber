@@ -2,7 +2,7 @@
 Author: wolffy
 Date: 2023-10-18 14:02:35
 LastEditors: fengtao92 1440913385@qq.com
-LastEditTime: 2023-10-18 14:38:45
+LastEditTime: 2023-10-18 15:38:46
 FilePath: /EWVtuber/Platform/bilibili_livedanmaku.py
 Description: 项目名称：虚拟主播软件
 版权所有：北京光线传媒股份有限公司
@@ -13,12 +13,63 @@ from bilibili_api import Credential, Danmaku, sync
 from bilibili_api.live import LiveDanmaku, LiveRoom
 from Session.chatglm_session import ChatglmSession
 from EWSpeech.speech import Speaker
+from bilibili_api.login import login_with_password, login_with_sms, send_sms, PhoneNumber, Check
+from bilibili_api.user import get_self_info
+from bilibili_api import settings
+from bilibili_api import sync
 
 class bilibiliDanmaku(object):
 
     session : ChatglmSession = None
     def __init__(self) -> None:
         pass
+
+    def login():
+        mode = int(input("""请选择登录方式：
+        1. 密码登录
+        2. 验证码登录
+        请输入 1/2
+        """))
+
+        credential = None
+
+        # 关闭自动打开 geetest 验证窗口
+        settings.geetest_auto_open = False
+
+        if mode == 1:
+            # 密码登录
+            username = input("请输入手机号/邮箱：")
+            password = input("请输入密码：")
+            print("正在登录。")
+            c = login_with_password(username, password)
+            if isinstance(c, Check):
+                # 还需验证
+                phone = print("需要进行验证。请考虑使用二维码登录")
+                exit(1)
+            else:
+                credential = c
+            print("登录成功")
+        elif mode == 2:
+            # 验证码登录
+            phone = input("请输入手机号：")
+            print("正在登录。")
+            send_sms(PhoneNumber(phone, country="+86")) # 默认设置地区为中国大陆
+            code = input("请输入验证码：")
+            c = login_with_sms(PhoneNumber(phone, country="+86"), code)
+            if isinstance(c, Check):
+                # 还需验证
+                phone = print("需要进行验证。请考虑使用二维码登录")
+                exit(1)
+            else:
+                credential = c
+            print("登录成功")
+        else:
+            print("请输入 1/2 ！")
+            exit()
+
+        if credential != None:
+            name = sync(get_self_info(credential))['name']
+            print(f"欢迎，{name}!")
 
     def startServer(self):
         # 自己直播间号
