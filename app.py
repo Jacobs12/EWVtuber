@@ -30,6 +30,7 @@ if __name__ == '__main__':
     cmd_mananger.session_manager = session
     bilibili_manager = bilibiliDanmaku()
     bilibili_manager.session = session
+    bilibili_manager.audio_manager = audio_manager
     bilibili_manager.startServer()
     
 

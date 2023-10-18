@@ -13,6 +13,7 @@ from bilibili_api import Credential, Danmaku, sync
 from bilibili_api.live import LiveDanmaku, LiveRoom
 from Session.chatglm_session import ChatglmSession
 from EWSpeech.speech import Speaker
+from Audio.audio import audioManager
 from bilibili_api.login import login_with_password, login_with_sms, send_sms, PhoneNumber, Check
 from bilibili_api.user import get_self_info
 from bilibili_api import settings
@@ -22,13 +23,14 @@ from bilibili_api import login, user, sync
 class bilibiliDanmaku(object):
 
     session : ChatglmSession = None
+    audio_manager : audioManager = None
     def __init__(self) -> None:
         pass
 
     def login(self):
         print("请登录：")
-        credential = login.login_with_qrcode_term() # 在终端扫描二维码登录
-        # credential = login.login_with_qrcode() # 使用窗口显示二维码登录
+        # credential = login.login_with_qrcode_term() # 在终端扫描二维码登录
+        credential = login.login_with_qrcode() # 使用窗口显示二维码登录
         try:
             credential.raise_for_no_bili_jct() # 判断是否成功
             credential.raise_for_no_sessdata() # 判断是否成功
@@ -36,6 +38,7 @@ class bilibiliDanmaku(object):
             print("登陆失败。。。")
             exit()
         print("欢迎，", sync(user.get_self_info(credential))['name'], "!")
+        return credential
         # mode = int(input("""请选择登录方式：
         # 1. 密码登录
         # 2. 验证码登录
@@ -103,8 +106,8 @@ class bilibiliDanmaku(object):
             # 发送者UID
             uid = event["data"]["info"][2][0]
             # 排除自己发送的弹幕
-            if uid == UID:
-                return
+            # if uid == UID:
+            #     return
             # 弹幕文本
             msg = event["data"]["info"][1]
             # if msg == "你好":
@@ -113,8 +116,12 @@ class bilibiliDanmaku(object):
 
             response = self.session.ask(msg)
             print(response)
+            
             speaker = Speaker(response)
             speaker.speak(response)
+
+            self.audio_manager.play(filename=speaker.output_path)
+             
 
         # 启动监听
         sync(monitor.connect())

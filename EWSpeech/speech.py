@@ -48,9 +48,9 @@ class Speaker(object):
         # 预设要朗读的文本数据
         line = text #要播报的内容
         self.text = text
-        engine.say(line)
+        # engine.say(line)
 
-        # engine.save_to_file(line, self.output_path)
+        engine.save_to_file(line, self.output_path)
         
         # 朗读
         engine.runAndWait()
