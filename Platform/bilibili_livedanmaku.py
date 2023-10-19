@@ -116,8 +116,11 @@ class bilibiliDanmaku(object):
 
             response = self.session.ask(msg)
             print(response)
-            
+            if '歌' in response:
+                self.audio_manager.test()
+                return
             speaker = Speaker(response)
+            speaker.audio_manager = self.audio_manager
             speaker.speak(response)
 
             self.audio_manager.play(filename=speaker.output_path)

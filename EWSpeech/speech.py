@@ -13,19 +13,21 @@ import pyttsx3
 import io
 import sys
 import os
+from Audio.audio import audioManager
  
 
 class Speaker(object):
     
+    audio_manager :audioManager = None
     output_path = 'Buffer\\Audio\\speech.wav'
-
     def __init__(self,text) -> None:
         self.text = text
 
     def speak(self,text:str):
         print(sys.platform)
         try:
-          os.remove(self.output_path)
+            self.audio_manager.player.unload()
+            os.remove(self.output_path)
         except:
             pass
         engine = pyttsx3.init()

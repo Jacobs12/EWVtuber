@@ -49,3 +49,6 @@ class audioManager(object):
     # 恢复音频播放
     def unpause(self):
         self.player.unpause()
+
+    def test(self):
+        self.play(filename='Tmp\\1.mp3')
