@@ -1,4 +1,4 @@
-'''
+"""
 Author: wolffy
 Date: 2023-10-18 10:29:58
 LastEditors: fengtao92 1440913385@qq.com
@@ -7,8 +7,8 @@ FilePath: /EWVtuber/bilibili.py
 Description: 项目名称：虚拟主播软件
 版权所有：北京光线传媒股份有限公司
 技术支持：北京光线传媒股份有限公司
-Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved. 
-'''
+Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved.
+"""
 import logging, os
 import threading
 import schedule
@@ -41,6 +41,7 @@ my_handle = None
 # last_liveroom_data = None
 last_username_list = None
 
+
 # 点火起飞
 def start_server():
     global config, common, my_handle, last_username_list
@@ -61,17 +62,15 @@ def start_server():
         logging.error("程序初始化失败！")
         os._exit(0)
 
-
     # 添加用户名到最新的用户名列表
     def add_username_to_last_username_list(data):
         global last_username_list
 
         # 添加数据到 最新入场的用户名列表
         last_username_list.append(data)
-        
+
         # 保留最新的3个数据
         last_username_list = last_username_list[-3:]
-
 
     # 定时任务
     def schedule_task(index):
@@ -92,7 +91,6 @@ def start_server():
             time = f"傍晚{hour - 12}点{min}分"
         elif 20 <= hour and hour < 24:
             time = f"晚上{hour - 12}点{min}分"
-
 
         # 根据对应索引从列表中随机获取一个值
         random_copy = random.choice(config.get("schedule")[index]["copy"])
@@ -120,7 +118,6 @@ def start_server():
 
         my_handle.process_data(data, "schedule")
 
-
     # 启动定时任务
     def run_schedule():
         global config
@@ -138,11 +135,9 @@ def start_server():
             schedule.run_pending()
             # time.sleep(1)  # 控制每次循环的间隔时间，避免过多占用 CPU 资源
 
-
     # 创建定时任务子线程并启动
     schedule_thread = threading.Thread(target=run_schedule)
     schedule_thread.start()
-
 
     # 启动动态文案
     async def run_trends_copywriting():
@@ -151,7 +146,7 @@ def start_server():
         try:
             if False == config.get("trends_copywriting", "enable"):
                 return
-            
+
             logging.info(f"动态文案任务线程运行中...")
 
             while True:
@@ -196,7 +191,6 @@ def start_server():
         except Exception as e:
             logging.error(traceback.format_exc())
 
-
     # 创建动态文案子线程并启动
     threading.Thread(target=lambda: asyncio.run(run_trends_copywriting())).start()
 
@@ -217,10 +211,10 @@ def start_server():
 
             # 生成一个 Credential 对象
             credential = Credential(
-                sessdata=common.parse_cookie_data(bilibili_cookie, "SESSDATA"), 
-                bili_jct=common.parse_cookie_data(bilibili_cookie, "bili_jct"), 
-                buvid3=common.parse_cookie_data(bilibili_cookie, "buvid3"), 
-                dedeuserid=common.parse_cookie_data(bilibili_cookie, "DedeUserID"), 
+                sessdata=common.parse_cookie_data(bilibili_cookie, "SESSDATA"),
+                bili_jct=common.parse_cookie_data(bilibili_cookie, "bili_jct"),
+                buvid3=common.parse_cookie_data(bilibili_cookie, "buvid3"),
+                dedeuserid=common.parse_cookie_data(bilibili_cookie, "DedeUserID"),
                 ac_time_value=bilibili_ac_time_value
             )
         elif config.get("bilibili", "login_type") == "手机扫码":
@@ -325,7 +319,8 @@ def start_server():
         # 单个礼物金额
         discount_price = event["data"]["data"]["discount_price"]
 
-        logging.info(f"用户：{user_name} 赠送 {num} 个 {gift_name}，单价 {discount_price}电池，总计 {combo_total_coin}电池")
+        logging.info(
+            f"用户：{user_name} 赠送 {num} 个 {gift_name}，单价 {discount_price}电池，总计 {combo_total_coin}电池")
 
         data = {
             "platform": "哔哩哔哩",
@@ -372,7 +367,6 @@ def start_server():
         my_handle.process_data(data, "gift")
 
         my_handle.process_data(data, "comment")
-        
 
     @room.on('INTERACT_WORD')
     async def _(event):
@@ -414,7 +408,6 @@ def start_server():
     #     """
 
     #     print(event)
-
 
     try:
         # 启动 Bilibili 直播间连接

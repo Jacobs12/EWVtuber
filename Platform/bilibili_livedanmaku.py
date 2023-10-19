@@ -20,20 +20,21 @@ from bilibili_api import settings
 from bilibili_api import sync
 from bilibili_api import login, user, sync
 
-class bilibiliDanmaku(object):
 
-    session : ChatglmSession = None
-    audio_manager : audioManager = None
+class bilibiliDanmaku(object):
+    session: ChatglmSession = None
+    audio_manager: audioManager = None
+
     def __init__(self) -> None:
         pass
 
     def login(self):
         print("请登录：")
         # credential = login.login_with_qrcode_term() # 在终端扫描二维码登录
-        credential = login.login_with_qrcode() # 使用窗口显示二维码登录
+        credential = login.login_with_qrcode()  # 使用窗口显示二维码登录
         try:
-            credential.raise_for_no_bili_jct() # 判断是否成功
-            credential.raise_for_no_sessdata() # 判断是否成功
+            credential.raise_for_no_bili_jct()  # 判断是否成功
+            credential.raise_for_no_sessdata()  # 判断是否成功
         except:
             print("登陆失败。。。")
             exit()
@@ -84,8 +85,8 @@ class bilibiliDanmaku(object):
         # if credential != None:
         #     name = sync(get_self_info(credential))['name']
         #     print(f"欢迎，{name}!")
-
-    def startServer(self):
+    
+    def startserver(self):
         credential = self.login()
         # 自己直播间号
         ROOMID = 30923980
@@ -124,7 +125,6 @@ class bilibiliDanmaku(object):
             speaker.speak(response)
 
             self.audio_manager.play(filename=speaker.output_path)
-             
 
         # 启动监听
         sync(monitor.connect())
