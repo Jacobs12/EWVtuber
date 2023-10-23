@@ -21,10 +21,10 @@ from functools import partial
 # 导入所需的库
 from bilibili_api import Credential, live, sync, login
 
-from utils.common import Common
-from utils.config import Config
-from utils.logger import Configure_logger
-from utils.my_handle import My_handle
+from Tools.common import Common
+from Tools.config import Config
+from Tools.logger import Configure_logger
+from Tools.my_handle import My_handle
 
 """
 	___ _                       
@@ -51,7 +51,7 @@ def start_server():
     common = Common()
     config = Config(config_path)
     # 日志文件路径
-    log_path = "./log/log-" + common.get_bj_time(1) + ".txt"
+    log_path = "./Log/Log-" + common.get_bj_time(1) + ".txt"
     Configure_logger(log_path)
 
     # 最新入场的用户名列表

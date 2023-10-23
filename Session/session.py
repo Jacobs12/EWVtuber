@@ -18,6 +18,7 @@ class Session(object):
     def pre_question(self) -> str:
         question = '你的名字是光线智能AI虚拟主播，不要回答敏感问题，请回答下面的问题：'
         return question
+
     def url(self) -> str:
         return ''
 
@@ -30,20 +31,14 @@ class Session(object):
         return parameters
 
     # 向AI发送post请求
-    def start_request(self,msg:str = '') -> str:
+    def start_request(self, msg: str = '') -> str:
         url = self.url()
         headers = self.headers()
         parameters = self.parameters()
-        response_data = requests.post(url=url,headers=headers,data=parameters)
+        response_data = requests.post(url=url, headers=headers, data=parameters)
         response = response_data.text
         return response
 
     def send_to_ai(self) -> str:
         response = self.start_request()
         return response
-
-
-
-
-
-

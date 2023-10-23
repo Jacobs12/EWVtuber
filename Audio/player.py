@@ -11,6 +11,7 @@ import sys
 import pygame
 import sounddevice as sd
 import os
+import Utils.utils
 
 
 class AudioPlayer(object):
@@ -56,9 +57,9 @@ class AudioPlayer(object):
         self.player.unpause()
 
     def test(self):
-        platform = sys.platform
+        platform = Utils.utils.get_system_platform()
         # print(platform)
-        if 'win32' in platform:
+        if platform == 'win':
             self.play(filename='Tmp\\1.mp3')
         else:
             self.play(filename='Tmp/1.mp3')

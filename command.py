@@ -16,6 +16,7 @@ import os
 from Platform.bilibili_livedanmaku import bilibiliDanmaku
 from Session.langchain_session import  LangchainSession
 from Audio.player import AudioPlayer
+import log
 
 
 class commandManager(object):
@@ -29,6 +30,7 @@ class commandManager(object):
         self.session_manager = session
 
     def check_cmd(self, cmd: str = '') -> bool:
+        log.add(log='cmd命令：' + cmd)
         #     恢复播放音频
         if cmd == '--play':
             self.audio_play()

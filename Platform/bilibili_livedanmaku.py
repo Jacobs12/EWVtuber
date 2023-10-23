@@ -11,6 +11,8 @@ Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved.
 '''
 from bilibili_api import Credential, Danmaku, sync
 from bilibili_api.live import LiveDanmaku, LiveRoom
+
+import log
 from Session.chatglm_session import ChatglmSession
 from EWSpeech.speech import Speaker
 from Audio.audio import AudioManager
@@ -69,6 +71,9 @@ class bilibiliDanmaku(object):
                 response = self.langchain_session.ask(question=msg,is_speak=True)
             # response = self.session.ask(msg,is_speak=True)
             print(response)
+            info = event["data"]["info"]
+            log.add(f'来自哔哩哔哩：{info}')
+            # log.add(f'接收到弹幕：')
             if '歌' in response:
                 self.audio_manager.test()
                 return
