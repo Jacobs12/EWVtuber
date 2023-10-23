@@ -43,7 +43,7 @@ def get_dir_path() -> str:
 
 def get_file_path() -> str:
     now = datetime.datetime.now()
-    file_name = now.strftime('%Y-%m-%d_%H:%M:%S')
+    file_name = now.strftime('%Y-%m-%d_%H:00')
     base_path = get_dir_path()
     file_path = f'{base_path}{file_name}.txt'
     return file_path
