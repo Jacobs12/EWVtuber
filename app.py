@@ -10,18 +10,15 @@ Description: 项目名称：虚拟主播软件
 Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved.
 """
 
-from Audio.audio import audioManager
-from Command.command import commandManager
-import os
-from EWSpeech.speech import Speaker
+from Audio.audio import AudioManager
+from command import commandManager
 from Session.chatglm_session import ChatglmSession
-from Platform.bilibili_livedanmaku import bilibiliDanmaku
 
 if __name__ == '__main__':
 
     session = ChatglmSession()
 
-    audio_manager = audioManager()
+    audio_manager = AudioManager()
 
     # audio_manager.play(filename='Buffer\\Audio\\speech.wav')
     # audio_manager.play(filename='Tmp/1.mp3')

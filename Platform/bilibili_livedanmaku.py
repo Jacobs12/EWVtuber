@@ -13,7 +13,7 @@ from bilibili_api import Credential, Danmaku, sync
 from bilibili_api.live import LiveDanmaku, LiveRoom
 from Session.chatglm_session import ChatglmSession
 from EWSpeech.speech import Speaker
-from Audio.audio import audioManager
+from Audio.audio import AudioManager
 from bilibili_api.login import login_with_password, login_with_sms, send_sms, PhoneNumber, Check
 from bilibili_api.user import get_self_info
 from bilibili_api import settings
@@ -23,7 +23,7 @@ from  Session.langchain_session import LangchainSession
 
 class bilibiliDanmaku(object):
     session: ChatglmSession = None
-    audio_manager: audioManager = None
+    audio_manager: AudioManager = None
     langchain_session:LangchainSession = None
     session_type:str = 'langchain'
 

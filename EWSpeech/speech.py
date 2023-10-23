@@ -1,24 +1,22 @@
-'''
-Author: wolffy
-Date: 2023-10-16 16:55:56
-LastEditors: fengtao92 1440913385@qq.com
-LastEditTime: 2023-10-18 14:43:50
-FilePath: /EWVtuber/EWSpeech/speech.py
-Description: 项目名称：虚拟主播软件
+"""
+EWVtuber
+项目名称：虚拟主播软件
 版权所有：北京光线传媒股份有限公司
 技术支持：北京光线传媒股份有限公司
-Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved. 
-'''
+Editor:fengtao
+Mails:fengtao23@mails.ucas.ac.cn
+"""
+
 import pyttsx3
 import io
 import sys
 import os
-from Audio.audio import audioManager
+from Audio.audio import AudioManager
  
 
 class Speaker(object):
     
-    audio_manager :audioManager = None
+    audio_manager :AudioManager = None
     output_path = 'Buffer\\Audio\\speech.wav'
     def __init__(self,text) -> None:
         self.text = text

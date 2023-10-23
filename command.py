@@ -10,16 +10,17 @@ Description: 项目名称：虚拟主播软件
 Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved.
 """
 
-from Audio.audio import audioManager
+from Audio.audio import AudioManager
 from Session.chatglm_session import ChatglmSession
 import os
 from Platform.bilibili_livedanmaku import bilibiliDanmaku
 from Session.langchain_session import  LangchainSession
+from Audio.player import AudioPlayer
 
 
 class commandManager(object):
     # 音频管理器
-    audio_manager: audioManager
+    audio_manager: AudioManager
     # 会话管理器，主要用于与AI通信
     session_manager: ChatglmSession
 
@@ -39,7 +40,8 @@ class commandManager(object):
             self.help_prompt()
         #     输出试音音频
         elif cmd == '--test':
-            self.play_test()
+            player = AudioPlayer()
+            player.test()
         #     停止播放音频
         elif cmd == '--stop':
             self.play_stop()
@@ -91,7 +93,7 @@ class commandManager(object):
         else:
             return False
 
-    def check_audio_cmd(self, cmd: str = '', audio_manager: audioManager = audioManager()):
+    def check_audio_cmd(self, cmd: str = '', audio_manager: AudioManager = AudioManager()):
         # if cmd == 'play':
         #     self.audio_play()
         # elif cmd == 'pause':
