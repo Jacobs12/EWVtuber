@@ -72,9 +72,9 @@ class bilibiliDanmaku(object):
             # response = self.session.ask(msg,is_speak=True)
             print(response)
             info = event["data"]["info"]
-            log.add(f'来自哔哩哔哩：{info}')
+            log.add(f'来自哔哩哔哩：[{uid}]:{msg}')
             # log.add(f'接收到弹幕：')
-            if '歌' in response:
+            if '歌' in msg:
                 self.audio_manager.test()
                 return
             speaker = Speaker(response)

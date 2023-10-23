@@ -11,6 +11,8 @@ Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved.
 '''
 import requests
 import json
+
+import log
 from EWSpeech.speech import Speaker
 
 
@@ -32,6 +34,7 @@ class ChatglmSession(object):
         responseDict = json.loads(responseData.text)
 
         response = responseDict['response']
+        log.add(f'AI:{response}')
 
         if is_speak:
             speaker = Speaker(response)

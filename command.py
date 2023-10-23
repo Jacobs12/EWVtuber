@@ -12,7 +12,6 @@ Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved.
 
 from Audio.audio import AudioManager
 from Session.chatglm_session import ChatglmSession
-import os
 from Platform.bilibili_livedanmaku import bilibiliDanmaku
 from Session.langchain_session import  LangchainSession
 from Audio.player import AudioPlayer

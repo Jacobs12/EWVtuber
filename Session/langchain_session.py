@@ -1,6 +1,7 @@
 import requests
 import json
 from EWSpeech.speech import Speaker
+import log
 
 
 class LangchainSession(object):
@@ -43,6 +44,7 @@ class LangchainSession(object):
         responseData = requests.post(url=url, data=data, headers=headers)
 
         response = responseData.text
+        log.add(f'AI:{response}')
         if is_speak:
             speaker = Speaker(response)
             speaker.speak(response)

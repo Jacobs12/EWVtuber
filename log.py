@@ -9,6 +9,7 @@ Mails:fengtao23@mails.ucas.ac.cn
 
 import datetime
 import os.path
+import Utils.utils
 
 
 def add(log: str):
@@ -16,8 +17,8 @@ def add(log: str):
     text = f'>> {now}\n   {log}\n'
     print(text)
     file_path = get_file_path()
-    # print(file_path)
-    fp = open(file_path,"a+")
+    print(file_path)
+    fp = open(file_path, "a+", encoding='utf-8')
     print(text, file=fp)
     fp.close()
 
@@ -32,8 +33,12 @@ def get_dir_path() -> str:
     # 按天/小时建立日志文件夹
     now = datetime.datetime.now()
     day = now.strftime('%Y-%m-%d')
-    hour = now.strftime('%Y-%m-%d_%H:00')
-    base_path = f'Log/{day}/{hour}/'
+    hour = now.strftime('%Y-%m-%d_%H_00')
+    base_path = ''
+    if Utils.utils.get_system_platform() == 'win':
+        base_path = f'Log\\{day}\\{hour}\\'
+    else:
+        base_path = f'Log/{day}/{hour}/'
     is_exist = os.path.exists(path=base_path)
     if not is_exist:
         os.makedirs(base_path)
@@ -43,7 +48,7 @@ def get_dir_path() -> str:
 
 def get_file_path() -> str:
     now = datetime.datetime.now()
-    file_name = now.strftime('%Y-%m-%d_%H:00')
+    file_name = now.strftime('%Y-%m-%d_%H_00')
     base_path = get_dir_path()
     file_path = f'{base_path}{file_name}.txt'
     return file_path
