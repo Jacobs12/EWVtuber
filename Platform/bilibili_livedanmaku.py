@@ -60,10 +60,14 @@ class bilibiliDanmaku(object):
             #     await sender.send_danmaku(Danmaku("你好！"))
             response = ''
             if self.session_type == 'chatglm':
+                if self.session == None:
+                    self.session = ChatglmSession()
                 response = self.session.ask(msg, is_speak=True)
             else:
+                if self.langchain_session == None:
+                    self.langchain_session = LangchainSession()
                 response = self.langchain_session.ask(question=msg,is_speak=True)
-            response = self.session.ask(msg,is_speak=True)
+            # response = self.session.ask(msg,is_speak=True)
             print(response)
             if '歌' in response:
                 self.audio_manager.test()

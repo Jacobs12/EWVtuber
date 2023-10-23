@@ -121,6 +121,7 @@ class commandManager(object):
         bilibili_manager.audio_manager = self.audio_manager
         bilibili_manager.session = session_type
         bilibili_manager.session_type = session_type
+        bilibili_manager.langchain_session = LangchainSession()
         bilibili_manager.start_server()
 
     """================================音频控制部分====================================="""
