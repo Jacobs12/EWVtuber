@@ -13,26 +13,28 @@ import requests
 import json
 from EWSpeech.speech import Speaker
 
+
 class ChatglmSession(object):
 
-    def ask(self,question:str = '') -> str:
+    def ask(self, question: str = '',is_speak:bool = False) -> str:
         url = "http://172.23.0.189:8000"
-        headers = {"Content-Type":"application/json"}
+        headers = {"Content-Type": "application/json"}
 
         question = '你的名字是光线智能AI虚拟主播，请回答下面的问题：' + question
         params = {
-            "prompt":question,
-            "history":[]
+            "prompt": question,
+            "history": []
         }
         data = json.dumps(params)
         print(params)
-        responseData = requests.post(url=url,data=data,headers=headers)
+        responseData = requests.post(url=url, data=data, headers=headers)
 
         responseDict = json.loads(responseData.text)
 
         response = responseDict['response']
 
-        speaker = Speaker(response)
-        speaker.speak(response)
+        if is_speak:
+            speaker = Speaker(response)
+            speaker.speak(response)
 
         return response

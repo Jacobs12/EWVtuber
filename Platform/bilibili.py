@@ -46,7 +46,7 @@ last_username_list = None
 def start_server():
     global config, common, my_handle, last_username_list
 
-    config_path = "config.json"
+    config_path = "../config.json"
 
     common = Common()
     config = Config(config_path)
