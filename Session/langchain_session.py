@@ -40,7 +40,7 @@ class LangchainSession(object):
             "prompt_name": "llm_chat"
         }
         data = json.dumps(params)
-        print(params)
+        # print(params)
         responseData = requests.post(url=url, data=data, headers=headers)
 
         response = responseData.text
