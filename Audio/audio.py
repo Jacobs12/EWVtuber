@@ -11,7 +11,16 @@ import pygame
 import sounddevice as sd
 import os
 
+
 class AudioManager(object):
+    _instance = None
+
+    # 单例模式
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(AudioManager, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
     def __init__(self) -> None:
         # VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)
         # pygame.mixer.init(devicename='VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)')
@@ -30,8 +39,8 @@ class AudioManager(object):
         self.mixer = pygame.mixer
         self.player = self.mixer.music
 
-    def play(self,filename:str = ''):
-        if os.path.exists(filename)==False or os.path.isfile(filename)==False:
+    def play(self, filename: str = ''):
+        if os.path.exists(filename) == False or os.path.isfile(filename) == False:
             print('当前播放的文件路径有误')
             return
         # VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)
@@ -43,7 +52,7 @@ class AudioManager(object):
     # 暂停播放音频
     def pause(self):
         self.player.pause()
-    
+
     # 恢复音频播放
     def unpause(self):
         self.player.unpause()

@@ -16,17 +16,19 @@ from Platform.bilibili_livedanmaku import bilibiliDanmaku
 from Session.langchain_session import  LangchainSession
 from Audio.player import AudioPlayer
 import log
+import vtuber
 
 
-class commandManager(object):
+class CommandManager(object):
     # 音频管理器
     audio_manager: AudioManager
     # 会话管理器，主要用于与AI通信
     session_manager: ChatglmSession
 
-    def __init__(self, audio, session) -> None:
-        self.audio_manager = audio
-        self.session_manager = session
+    def __init__(self) -> None:
+        # self.audio_manager = audio
+        # self.session_manager = session
+        pass
 
     def check_cmd(self, cmd: str = '') -> bool:
         log.add(log='cmd命令：' + cmd)
@@ -41,7 +43,7 @@ class commandManager(object):
             self.help_prompt()
         #     输出试音音频
         elif cmd == '--test':
-            player = AudioPlayer()
+            player = vtuber.audio_player()
             player.test()
         #     停止播放音频
         elif cmd == '--stop':
