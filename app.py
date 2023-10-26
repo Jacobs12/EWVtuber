@@ -11,10 +11,11 @@ from vtuber import Vtuber
 
 if __name__ == '__main__':
     app = Vtuber()
-    select = str(input('请输入界面模式：\n  1.命令行模式\n  2.可视化界面\n>> '))
-    if select == '1':
-        app.start_command_line()
-    elif select == '2':
-        print('可视化界面正在开发中')
-    else:
-        print('无效的参数')
+    app.start_command_line()
+    # select = str(input('请输入界面模式：\n  1.命令行模式\n  2.可视化界面\n>> '))
+    # if select == '1':
+    #     app.start_command_line()
+    # elif select == '2':
+    #     print('可视化界面正在开发中')
+    # else:
+    #     print('无效的参数')

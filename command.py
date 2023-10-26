@@ -73,11 +73,13 @@ class CommandManager(object):
                 print(result)
             elif select == '2':
                 # 进入知识库问答模式
-                response = input('已进入知识库问答模式,请输入您想问的问题：\n>> ')
+                # response = input('已进入知识库问答模式,请输入您想问的问题：\n>> ')
+                # session = LangchainSession()
+                # result = session.ask(question=response,is_speak=True)
+                # print(result)
+                # self.audio_manager.play('Buffer/Audio/speech.wav')
                 session = LangchainSession()
-                result = session.ask(question=response,is_speak=True)
-                print(result)
-                self.audio_manager.play('Buffer/Audio/speech.wav')
+                session.get_knowledge_ready()
         elif cmd == '--live':
             select = str(
                 input('您已进入直播模式，请确保开启voicemeeter\n请选择直播平台：\n  1.哔哩哔哩\n  2.抖音\n  3.快手\n>> '))

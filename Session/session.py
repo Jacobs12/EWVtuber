@@ -9,6 +9,7 @@ Mails:fengtao23@mails.ucas.ac.cn
 
 import requests
 import json
+import API.vtuber_api
 
 
 class Session(object):
@@ -19,7 +20,7 @@ class Session(object):
         question = '你的名字是光线智能AI虚拟主播，不要回答敏感问题，请回答下面的问题：'
         return question
 
-    def url(self) -> str:
+    def host(self) -> str:
         return ''
 
     def headers(self) -> dict:
@@ -39,6 +40,6 @@ class Session(object):
         response = response_data.text
         return response
 
-    def send_to_ai(self) -> str:
+    def send_to_ai(self, question: str = '') -> str:
         response = self.start_request()
         return response
