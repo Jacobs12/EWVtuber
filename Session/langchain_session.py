@@ -11,9 +11,76 @@ class LangchainSession(Session):
     def __init__(self):
         super().__init__()
 
+    def get_llm_ready(self):
+        print('已经入llm普通问答模式：')
+        print('请输入你想问的问题：')
+        history = []
+        while True:
+            question = str(input('>> '))
+            if question == 'q':
+                break
+            response, record = self.chat_normal(question=question, history=history)
+            history.extend(record)
+            print(history)
+
+    def chat_normal(self, question: str = '', history: list = None) -> (str, list):
+        url = f"{self.host()}/chat/chat"
+        headers = self.headers()
+
+        if history is None:
+            history = []
+        question = self.pre_question() + question
+        print(question)
+        params = {
+            "query": question,
+            "history": history,
+            "stream": False,
+            "model_name": "chatglm2-6b",
+            "temperature": 0.7,
+            "prompt_name": "llm_chat"
+        }
+        data = json.dumps(params)
+        print(params)
+        response_data = requests.post(url=url, data=data, headers=headers)
+
+        response = response_data.text
+        log.add(f'user:{question}\n   AI:{response}')
+        history = [
+            {
+                "role": "user",
+                "content": question
+            },
+            {
+                "role": "assistant",
+                "content": response
+            }
+        ]
+        print(response)
+        # if is_speak:
+        #     speaker = Speaker()
+        #     speaker.speak(response)
+
+        return response, history
+
     def get_knowledge_ready(self):
-        print('已进入知识库问答模式，请选择知识库：')
         knowledge_lists = self.get_knowledge_lists()
+        prompt = self.get_knowledge_prompt(knowledge_lists)
+        print(prompt)
+        selection = str(input('>> '))
+        knowledge_base_name = knowledge_lists[int(selection) - 1]
+        print('请输入你想问的问题：')
+        history = []
+        while True:
+            question = str(input('>> '))
+            if question == 'q':
+                break
+            response, record = self.chat_knowledge(knowledge_base_name=knowledge_base_name, question=question,
+                                                   history=history)
+            history.extend(record)
+            print(history)
+
+    def get_knowledge_prompt(self, knowledge_lists: list = None):
+        print('已进入知识库问答模式，请选择知识库：')
         prompt = ''
         count = 0
         for item in knowledge_lists:
@@ -22,62 +89,7 @@ class LangchainSession(Session):
                 prompt = f'{prompt}  {count}.{item}'
             else:
                 prompt = f'{prompt}  {count}.{item}\n'
-        print(prompt)
-        selection = str(input('>> '))
-        knowledge_base_name = knowledge_lists[int(selection)-1]
-        print('请输入你想问的问题：')
-        history = []
-        while True:
-            question = str(input('>> '))
-            if question == 'q':
-                break
-            record = self.chat_knowledge(knowledge_base_name=knowledge_base_name,question=question,history=history)
-            history.extend(record)
-            print(history)
-
-    def ask(self, question: str = '', is_speak: bool = False) -> str:
-        url = "http://172.23.0.191:7866/chat/chat"
-        headers = {"Content-Type": "application/json"}
-
-        question = '你的名字是光线智能AI虚拟主播，请回答下面的问题：' + question
-        # params = {
-        #     "query": question,
-        #     "history": [
-        #         {
-        #             "role": "user",
-        #             "content": "你的名字是光线智能AI虚拟主播，请不要回答敏感问题"
-        #         },
-        #         {
-        #             "role": "assistant",
-        #             "content": "好的，我会尽量遵守你的要求，光线智能AI虚拟主播。有任何需要帮助的问题，请随时提问。"
-        #         }
-        #     ],
-        #     "stream": False,
-        #     "model_name": "chatglm2-6b-int4",
-        #     "temperature": 0.7,
-        #     "prompt_name": "llm_chat"
-        # }
-        params = {
-            "query": question,
-            "history": [
-            ],
-            "stream": False,
-            "model_name": "chatglm2-6b",
-            "temperature": 0.7,
-            "prompt_name": "llm_chat"
-        }
-        data = json.dumps(params)
-        # print(params)
-        responseData = requests.post(url=url, data=data, headers=headers)
-
-        response = responseData.text
-        log.add(f'AI:{response}')
-        if is_speak:
-            speaker = Speaker()
-            speaker.speak(response)
-
-        return response
-
+        return prompt
     def host(self) -> str:
         super().host()
         host = API.vtuber_api.langchain_host()
@@ -85,29 +97,30 @@ class LangchainSession(Session):
 
     # '''============================chat===================================='''
 
-    def chat_knowledge(self,knowledge_base_name:str = '',question:str = '',history:list = []) -> list:
-        log.add(f'user:{question}')
+    def chat_knowledge(self, knowledge_base_name: str = '', question: str = '', history: list = None) -> (str, list):
+        if knowledge_base_name is None or knowledge_base_name == '':
+            knowledge_base_name = 'ewangcom'
         question = f'{self.pre_question()}{question}'
         url = f'{self.host()}/chat/knowledge_base_chat'
         headers = self.headers()
         parameters = {
-                      "query": question,
-                      "knowledge_base_name": knowledge_base_name,
-                      "top_k": 3,
-                      "score_threshold": 1,
-                      "history": history,
-                      "stream": False,
-                      "model_name": "chatglm2-6b",
-                      "temperature": 0.7,
-                      "prompt_name": "knowledge_base_chat",
-                      "local_doc_url": False
-                    }
+            "query": question,
+            "knowledge_base_name": knowledge_base_name,
+            "top_k": 3,
+            "score_threshold": 1,
+            "history": history,
+            "stream": False,
+            "model_name": "chatglm2-6b",
+            "temperature": 0.7,
+            "prompt_name": "knowledge_base_chat",
+            "local_doc_url": False
+        }
         data = json.dumps(parameters)
         response_data = requests.post(url=url, data=data, headers=headers)
         response = response_data.text
         dic = json.loads(response)
         answer = dic['answer']
-        log.add(f'AI:{answer}')
+        log.add(f'knowledge_base_name:{knowledge_base_name}\nuser:{question}\nAI:{answer}')
         history = [
             {
                 "role": "user",
@@ -119,7 +132,7 @@ class LangchainSession(Session):
             }
         ]
         print(response)
-        return history
+        return response, history
 
     # '''============================Knowledge Base Management===================================='''
 

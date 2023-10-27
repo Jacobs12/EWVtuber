@@ -67,17 +67,16 @@ class CommandManager(object):
                 '本模式下可以在控制台与AI进行问答互动\n请选择问答模式：\n  1.普通问答模式\n  2.本地知识库问答模式\n>> '))
             if select == '1':
                 # 进入普通问答模式
-                response = input('已进入普通问答模式,请输入您想问的问题：\n>> ')
-                session = ChatglmSession()
-                result = session.ask(question=response,is_speak=False)
+                selection = str(input('请选择服务器：\n  1.chatglm\n  2.langchain\n>> '))
+                if selection == '1':
+                    session = ChatglmSession()
+                    result = session.ask(question=response,is_speak=False)
+                elif selection == '2':
+                    session = LangchainSession()
+                    session.get_llm_ready()
                 print(result)
             elif select == '2':
                 # 进入知识库问答模式
-                # response = input('已进入知识库问答模式,请输入您想问的问题：\n>> ')
-                # session = LangchainSession()
-                # result = session.ask(question=response,is_speak=True)
-                # print(result)
-                # self.audio_manager.play('Buffer/Audio/speech.wav')
                 session = LangchainSession()
                 session.get_knowledge_ready()
         elif cmd == '--live':

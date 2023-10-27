@@ -33,6 +33,17 @@ class bilibiliDanmaku(object):
         pass
 
     def start_server(self):
+        knowledge_base_name = ''
+        if self.session_type == 'chatglm':
+            print('chatglm')
+        else:
+            # 选择知识库
+            knowledge_lists = self.langchain_session.get_knowledge_lists()
+            prompt = self.langchain_session.get_knowledge_prompt(knowledge_lists=knowledge_lists)
+            print(prompt)
+            selection = str(input('>> '))
+            knowledge_base_name = knowledge_lists[int(selection)]
+
         credential = self.login()
         # 自己直播间号
         ROOMID = 30923980
@@ -68,7 +79,7 @@ class bilibiliDanmaku(object):
             else:
                 if self.langchain_session == None:
                     self.langchain_session = LangchainSession()
-                response = self.langchain_session.ask(question=msg,is_speak=True)
+                response,history = self.langchain_session.chat_knowledge(knowledge_base_name=knowledge_base_name,question=msg,history=[])
             # response = self.session.ask(msg,is_speak=True)
             print(response)
             info = event["data"]["info"]
