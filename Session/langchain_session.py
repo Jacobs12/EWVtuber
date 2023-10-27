@@ -120,7 +120,7 @@ class LangchainSession(Session):
         response = response_data.text
         dic = json.loads(response)
         answer = dic['answer']
-        log.add(f'knowledge_base_name:{knowledge_base_name}\nuser:{question}\nAI:{answer}')
+        log.add(f'knowledge_base_name:{knowledge_base_name}\n   user:{question}\n   AI:{answer}')
         history = [
             {
                 "role": "user",
@@ -132,7 +132,7 @@ class LangchainSession(Session):
             }
         ]
         print(response)
-        return response, history
+        return answer, history
 
     # '''============================Knowledge Base Management===================================='''
 
