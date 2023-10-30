@@ -8,8 +8,10 @@ Mails:fengtao23@mails.ucas.ac.cn
 """
 
 from vtuber import Vtuber
+import os
 
 if __name__ == '__main__':
+    print('欢迎使用光线AI虚拟主播系统')
     app = Vtuber()
     app.start_command_line()
     # select = str(input('请输入界面模式：\n  1.命令行模式\n  2.可视化界面\n>> '))

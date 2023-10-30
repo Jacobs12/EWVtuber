@@ -6,6 +6,11 @@ EWVtuber
 Editor:fengtao
 Mails:fengtao23@mails.ucas.ac.cn
 """
+import os
+try:
+    os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+except:
+    print('')
 import sys
 
 import pygame
