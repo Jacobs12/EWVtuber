@@ -10,15 +10,18 @@ Mails:fengtao23@mails.ucas.ac.cn
 from command import CommandManager
 from Audio.player import AudioPlayer
 from EWSpeech.speech import Speaker
+import MainWindow
 
 
 class Vtuber(object):
-    _instance = None
+    window: MainWindow = None
     cmd_manager: CommandManager = None  # 命令行控制器
     audio_player: AudioPlayer = None  # 音频播放器
     speaker: Speaker = None
 
     # 单例模式
+    _instance = None
+
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
             cls._instance = super(Vtuber, cls).__new__(cls, *args, **kwargs)
@@ -39,10 +42,20 @@ class Vtuber(object):
             if is_break:
                 break
 
+    def setup_ui(self):
+        self.window.pushButton.clicked.connect(self.click)
+     #
+     # def click(self):
+     #    print('哈哈哈哈哈哈哈哈')
+
+    def click(self):
+        print('哈哈哈哈哈哈哈')
+
 
 def audio_player() -> AudioPlayer:
     player = Vtuber().audio_player
     return player
+
 # default_vtuber = Vtuber()
 # cmd_manager = default_vtuber.cmd_manager
 # audio_player = default_vtuber.audio_player

@@ -14,3 +14,6 @@ attrs==23.1.0
 backcall==0.2.0
 beautifulsoup4
 bilibili-api-python==16.0.0
+sip
+PyQt5
+PyQt5-tools
