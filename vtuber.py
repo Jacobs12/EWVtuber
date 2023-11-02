@@ -48,6 +48,9 @@ class Vtuber(object):
      # def click(self):
      #    print('哈哈哈哈哈哈哈哈')
 
+    def play_test(self):
+        self.audio_player.test()
+
     def click(self):
         print('哈哈哈哈哈哈哈')
 

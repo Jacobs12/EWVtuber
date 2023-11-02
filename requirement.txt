@@ -17,3 +17,4 @@ bilibili-api-python==16.0.0
 sip
 PyQt5
 PyQt5-tools
+python-vlc
