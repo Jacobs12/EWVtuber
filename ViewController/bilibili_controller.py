@@ -6,6 +6,10 @@ EWVtuber
 Editor:fengtao
 Mails:fengtao23@mails.ucas.ac.cn
 """
-class EWMediaPlayer(object):
-    def __init__(self):
-        print('')
+
+from ViewController.ewbase_controller import BaseController
+
+
+class BilibiliController(BaseController):
+    def setup_ui(self):
+        super().setup_ui()

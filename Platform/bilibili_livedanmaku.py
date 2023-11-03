@@ -7,7 +7,7 @@ FilePath: /EWVtuber/Platform/bilibili_livedanmaku.py
 Description: 项目名称：虚拟主播软件
 版权所有：北京光线传媒股份有限公司
 技术支持：北京光线传媒股份有限公司
-Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved. 
+Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved.
 '''
 import json
 import os.path
@@ -26,6 +26,10 @@ from bilibili_api import sync
 from bilibili_api import login, user, sync
 from  Session.langchain_session import LangchainSession
 import pickle
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QLabel
+import time
+from PyQt5.QtCore import Qt
 
 class bilibiliDanmaku(object):
     session: ChatglmSession = None
@@ -128,6 +132,132 @@ class bilibiliDanmaku(object):
         return is_exist
 
 
+    qecode_data = None
+    def login_ui(self,qrcode_widget:QLabel) -> ():
+        print('login')
+        is_needs_login = True
+        if self.is_credential_exist() == True:
+            is_needs_login == False
+        credential = None
+
+
+        if is_needs_login == True:
+            print('显示二维码')
+            from PIL.ImageTk import PhotoImage
+            import tkinter
+            import tkinter.font
+
+            # root = None
+            # if root == None:
+            #     root = tkinter.Tk()
+            # root.title("扫码登录")
+
+            # credential = login.login_with_qrcode()  # 使用窗口显示二维码登录
+            print('显示二维码')
+
+            qrcode_data = login.update_qrcode_data()
+            print(qrcode_data["url"])
+
+            login_key = qrcode_data["qrcode_key"]
+            qrcode_image = login.make_qrcode(qrcode_data["url"])
+            print(qrcode_image)
+            # photo = PhotoImage(file=qrcode_image)
+            # #
+            img = QPixmap(qrcode_image).scaled(150,150,aspectRatioMode=Qt.KeepAspectRatio)
+            qrcode_widget.setPixmap(img)
+            qrcode_widget.setFixedSize(150,150)
+
+            self.restore_credential(credential=credential)
+            return None,None
+        else:
+            print('使用缓存登录')
+            credential = self.get_credential_cache()
+
+        try:
+            credential.raise_for_no_bili_jct()  # 判断是否成功
+            credential.raise_for_no_sessdata()  # 判断是否成功
+        except:
+            print("登陆失败。。。")
+            # exit()
+        # print("欢迎，", sync(user.get_self_info(credential))['name'], "!")
+        nickname = sync(user.get_self_info(credential))['name']
+        print('昵称')
+        return credential,nickname
+
+    def start_server_ui(self):
+        knowledge_base_name = ''
+        if self.session_type == 'chatglm':
+            print('chatglm')
+        else:
+            # 选择知识库
+            knowledge_lists = self.langchain_session.get_knowledge_lists()
+            prompt = self.langchain_session.get_knowledge_prompt(knowledge_lists=knowledge_lists)
+            print(prompt)
+            selection = str(input('>> '))
+            knowledge_base_name = knowledge_lists[int(selection)]
+
+        credential = self.login()
+        # 自己直播间号
+        ROOMID = 30923980
+        # 凭证 根据回复弹幕的账号填写
+        # credential = Credential(
+        #     sessdata="",
+        #     bili_jct=""
+        # )
+        # 监听直播间弹幕
+        monitor = LiveDanmaku(ROOMID, credential=credential)
+        # 用来发送弹幕
+        sender = LiveRoom(ROOMID, credential=credential)
+        # 自己的UID 可以手动填写也可以根据直播间号获取
+        UID = sync(sender.get_room_info())["room_info"]["uid"]
+
+        # info = sync(sender.get_room_info())
+        # info_json = json.dumps(info)
+        # print(info_json)
+        @monitor.on("DANMU_MSG")
+        async def recv(event):
+            # 发送者UID
+            uid = event["data"]["info"][2][0]
+            # 排除自己发送的弹幕
+            # if uid == UID:
+            #     return
+            # 弹幕文本
+            msg = event["data"]["info"][1]
+            user_name = event["data"]["info"][2][1]
+            # if msg == "你好":
+            #     # 发送弹幕
+            #     await sender.send_danmaku(Danmaku("你好！"))
+            info = json.dumps(event)
+            print(info)
+            response = ''
+            if self.session_type == 'chatglm':
+                if self.session == None:
+                    self.session = ChatglmSession()
+                response = self.session.ask(msg, is_speak=True)
+            else:
+                if self.langchain_session == None:
+                    self.langchain_session = LangchainSession()
+                response, history = self.langchain_session.chat_knowledge(knowledge_base_name=knowledge_base_name,
+                                                                          question=msg, history=[])
+            # response = self.session.ask(msg,is_speak=True)
+            print(response)
+            info = event["data"]["info"]
+            log.add(f'来自哔哩哔哩：[{user_name}(uid={uid}]:{msg}\n   AI:{response}')
+            # log.add(f'接收到弹幕：')
+            if '歌' in msg:
+                self.audio_manager.test()
+                return
+            try:
+                speaker = Speaker()
+                speaker.audio_manager = self.audio_manager
+                speaker.speak(response)
+
+                self.audio_manager.play(filename=speaker.output_path)
+            except:
+                print('音频出现错误')
+
+        # 启动监听
+        sync(monitor.connect())
 
     def login(self):
         print("请登录：")
