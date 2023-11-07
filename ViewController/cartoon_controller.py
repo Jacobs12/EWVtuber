@@ -24,7 +24,7 @@ class CartoonController(BaseController):
     def play_video(self):
         if self.player is None:
             self.player = EWMediaPlayer(widget=self.window.cartoon_video_widget)
-        self.player.load_content_filepath('/Users/admin/Desktop/1.mp4')
+        self.player.load_content_filepath('https://tb-video.bdstatic.com/tieba-smallvideo-transcode-crf/21_4c93be42b15bb2b0f0ff082827dc82c2_0.mp4?vt=0&pt=3&ver=&cr=2&cd=0&sid=&ft=2&tbau=2023-11-08_109fac1fd153bc5e5bbc070a8b4f241942ae24aa5c329db94e02d4a67eb3f012&ptid=8674226587')
         self.player.play()
 
     bilibili_manager = None

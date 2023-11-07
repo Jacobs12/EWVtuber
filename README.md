@@ -7,3 +7,9 @@
     下载steam，在steam上搜索Vtuber Studio
 3.安装项目所依赖库（安装依赖库之前可以先创建虚拟环境）：
     pip install -r requirement.txt
+    安装视频播放依赖：vlc 
+    https://www.videolan.org/vlc/
+    注意安装对应版本，一般为64位版本
+    安装完成后
+    将安装目录添加到环境变量中
+    
