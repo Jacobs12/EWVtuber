@@ -40,16 +40,16 @@
      <enum>Qt::RightToLeft</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="bilibili">
      <widget class="QScrollArea" name="scrollArea_2">
       <property name="geometry">
        <rect>
-        <x>59</x>
+        <x>19</x>
         <y>9</y>
-        <width>581</width>
-        <height>551</height>
+        <width>881</width>
+        <height>661</height>
        </rect>
       </property>
       <property name="widgetResizable">
@@ -60,17 +60,17 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>579</width>
-         <height>549</height>
+         <width>879</width>
+         <height>659</height>
         </rect>
        </property>
        <widget class="QLabel" name="label_2">
         <property name="geometry">
          <rect>
-          <x>220</x>
+          <x>10</x>
           <y>10</y>
-          <width>151</width>
-          <height>16</height>
+          <width>821</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="font">
@@ -79,7 +79,7 @@
          </font>
         </property>
         <property name="text">
-         <string>哔哩哔哩直播</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;二次元直播&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -88,10 +88,10 @@
        <widget class="QScrollArea" name="scrollArea_3">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>0</x>
           <y>50</y>
-          <width>531</width>
-          <height>481</height>
+          <width>881</width>
+          <height>611</height>
          </rect>
         </property>
         <property name="widgetResizable">
@@ -102,41 +102,28 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>529</width>
-           <height>479</height>
+           <width>879</width>
+           <height>609</height>
           </rect>
          </property>
-         <widget class="QTextEdit" name="bilibili_message_field">
+         <widget class="QTextEdit" name="cartoon_message_field">
           <property name="geometry">
            <rect>
-            <x>140</x>
-            <y>90</y>
-            <width>341</width>
-            <height>371</height>
+            <x>530</x>
+            <y>480</y>
+            <width>331</width>
+            <height>121</height>
            </rect>
           </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
          </widget>
-         <widget class="QPushButton" name="pushButton">
-          <property name="geometry">
-           <rect>
-            <x>370</x>
-            <y>5</y>
-            <width>113</width>
-            <height>32</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>登录</string>
-          </property>
-         </widget>
          <widget class="QComboBox" name="comboBox_4">
           <property name="geometry">
            <rect>
-            <x>140</x>
-            <y>50</y>
+            <x>610</x>
+            <y>360</y>
             <width>221</width>
             <height>26</height>
            </rect>
@@ -155,8 +142,8 @@
          <widget class="QLabel" name="page1_type_label_4">
           <property name="geometry">
            <rect>
-            <x>34</x>
-            <y>50</y>
+            <x>524</x>
+            <y>360</y>
             <width>81</width>
             <height>21</height>
            </rect>
@@ -168,21 +155,21 @@
          <widget class="QLabel" name="page1_type_label_5">
           <property name="geometry">
            <rect>
-            <x>20</x>
-            <y>90</y>
+            <x>520</x>
+            <y>450</y>
             <width>91</width>
             <height>21</height>
            </rect>
           </property>
           <property name="text">
-           <string>聊天信息监控：</string>
+           <string>历史聊天记录：</string>
           </property>
          </widget>
          <widget class="QLineEdit" name="lineEdit">
           <property name="geometry">
            <rect>
-            <x>140</x>
-            <y>10</y>
+            <x>610</x>
+            <y>326</y>
             <width>211</width>
             <height>21</height>
            </rect>
@@ -194,8 +181,8 @@
          <widget class="QLabel" name="label_5">
           <property name="geometry">
            <rect>
-            <x>60</x>
-            <y>10</y>
+            <x>550</x>
+            <y>330</y>
             <width>60</width>
             <height>16</height>
            </rect>
@@ -204,6 +191,351 @@
            <string>房间号：</string>
           </property>
          </widget>
+         <widget class="EWVideoWidget" name="cartoon_video_widget" native="true">
+          <property name="geometry">
+           <rect>
+            <x>490</x>
+            <y>60</y>
+            <width>380</width>
+            <height>210</height>
+           </rect>
+          </property>
+          <widget class="QLabel" name="label_13">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>10</y>
+             <width>71</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#21ff06;&quot;&gt;· REC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QLabel" name="label_19">
+          <property name="geometry">
+           <rect>
+            <x>490</x>
+            <y>30</y>
+            <width>91</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>当前直播画面：</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="cartoon_videoplay_button">
+          <property name="geometry">
+           <rect>
+            <x>490</x>
+            <y>280</y>
+            <width>113</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>播放</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="cartoon_videostop_button">
+          <property name="geometry">
+           <rect>
+            <x>750</x>
+            <y>280</y>
+            <width>113</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>停止</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="page1_type_label_6">
+          <property name="geometry">
+           <rect>
+            <x>524</x>
+            <y>400</y>
+            <width>81</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>选择知识库</string>
+          </property>
+         </widget>
+         <widget class="QComboBox" name="comboBox_7">
+          <property name="geometry">
+           <rect>
+            <x>610</x>
+            <y>400</y>
+            <width>221</width>
+            <height>26</height>
+           </rect>
+          </property>
+          <item>
+           <property name="text">
+            <string>知识库11</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>知识库111</string>
+           </property>
+          </item>
+         </widget>
+         <widget class="QLabel" name="label_77">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>150</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>正在回复：</string>
+          </property>
+         </widget>
+         <widget class="QTextBrowser" name="textBrowser_13">
+          <property name="geometry">
+           <rect>
+            <x>110</x>
+            <y>270</y>
+            <width>281</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; 用户：你有多久没看《新闻联播》90后第一代主持人与王音棋&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_29">
+          <property name="geometry">
+           <rect>
+            <x>400</x>
+            <y>470</y>
+            <width>81</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>删除</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_78">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>80</y>
+            <width>60</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>用户：</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="cartoon_login_button">
+          <property name="geometry">
+           <rect>
+            <x>300</x>
+            <y>70</y>
+            <width>113</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>登录</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_79">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>280</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>等待回复↑：</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="cartoon_qrcode_label">
+          <property name="geometry">
+           <rect>
+            <x>290</x>
+            <y>30</y>
+            <width>150</width>
+            <height>150</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>二维码</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+         </widget>
+         <widget class="QComboBox" name="comboBox_26">
+          <property name="geometry">
+           <rect>
+            <x>90</x>
+            <y>35</y>
+            <width>191</width>
+            <height>26</height>
+           </rect>
+          </property>
+          <item>
+           <property name="text">
+            <string>哔哩哔哩直播</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>抖音</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>快手</string>
+           </property>
+          </item>
+         </widget>
+         <widget class="QTextBrowser" name="textBrowser_14">
+          <property name="geometry">
+           <rect>
+            <x>110</x>
+            <y>400</y>
+            <width>281</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; 用户：你有多久没看《新闻联播》90后第一代主持人与王音棋&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_80">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>120</y>
+            <width>101</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>回复信息列表：</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_30">
+          <property name="geometry">
+           <rect>
+            <x>400</x>
+            <y>340</y>
+            <width>81</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>删除</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_81">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>40</y>
+            <width>51</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>平台：</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_31">
+          <property name="geometry">
+           <rect>
+            <x>400</x>
+            <y>220</y>
+            <width>81</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>删除</string>
+          </property>
+         </widget>
+         <widget class="QTextBrowser" name="textBrowser_15">
+          <property name="geometry">
+           <rect>
+            <x>110</x>
+            <y>150</y>
+            <width>281</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; 用户：你好&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; AI：坎坎坷坷军扩绿军扩军扩军扩绿军扩军扩军扩绿军扩绿军扩军扩军扩军付军扩&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="cartoon_qrcodecancel_button">
+          <property name="geometry">
+           <rect>
+            <x>440</x>
+            <y>40</y>
+            <width>61</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>取消</string>
+          </property>
+         </widget>
+         <zorder>textBrowser_15</zorder>
+         <zorder>cartoon_qrcodecancel_button</zorder>
+         <zorder>cartoon_qrcode_label</zorder>
+         <zorder>cartoon_message_field</zorder>
+         <zorder>comboBox_4</zorder>
+         <zorder>page1_type_label_4</zorder>
+         <zorder>page1_type_label_5</zorder>
+         <zorder>lineEdit</zorder>
+         <zorder>label_5</zorder>
+         <zorder>cartoon_video_widget</zorder>
+         <zorder>label_19</zorder>
+         <zorder>cartoon_videoplay_button</zorder>
+         <zorder>cartoon_videostop_button</zorder>
+         <zorder>page1_type_label_6</zorder>
+         <zorder>comboBox_7</zorder>
+         <zorder>label_77</zorder>
+         <zorder>textBrowser_13</zorder>
+         <zorder>pushButton_29</zorder>
+         <zorder>label_78</zorder>
+         <zorder>cartoon_login_button</zorder>
+         <zorder>label_79</zorder>
+         <zorder>comboBox_26</zorder>
+         <zorder>textBrowser_14</zorder>
+         <zorder>label_80</zorder>
+         <zorder>pushButton_30</zorder>
+         <zorder>label_81</zorder>
+         <zorder>pushButton_31</zorder>
         </widget>
        </widget>
        <zorder>scrollArea_3</zorder>
@@ -233,7 +565,7 @@
       <widget class="QWidget" name="scrollAreaWidgetContents">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>-561</x>
          <y>0</y>
          <width>659</width>
          <height>539</height>
@@ -871,7 +1203,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>哔哩哔哩直播</string>
+     <string>二次元直播</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tab_ready_button">

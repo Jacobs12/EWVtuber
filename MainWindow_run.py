@@ -10,7 +10,7 @@ from MainWindow import Ui_MainWindow
 from vtuber import Vtuber
 from PyQt5.QtWidgets import *
 
-from ViewController.bilibili_controller import BilibiliController
+from ViewController.cartoon_controller import CartoonController
 from ViewController.shuziren_controller import ShuzirenController
 from ViewController.llm_controller import LLMController
 from ViewController.setting_controller import SettingController
@@ -59,10 +59,10 @@ class MainWindowUI(QMainWindow, Ui_MainWindow):
 # """
 
     # 设置哔哩哔哩直播页面
-    bilibili_controller: BilibiliController = None
+    bilibili_controller: CartoonController = None
 
     def setup_bilibili_homepage(self):
-        self.bilibili_controller = BilibiliController(window=self)
+        self.bilibili_controller = CartoonController(window=self)
 
     #     设置llm聊天界面
     llm_controller: LLMController = None

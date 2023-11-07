@@ -30,12 +30,14 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLabel
 import time
 from PyQt5.QtCore import Qt
+import threading
 
 class bilibiliDanmaku(object):
     session: ChatglmSession = None
     audio_manager: AudioManager = None
     langchain_session:LangchainSession = None
     session_type:str = 'langchain'
+    timer:threading.Timer = None
 
     def __init__(self) -> None:
         pass
@@ -133,6 +135,10 @@ class bilibiliDanmaku(object):
 
 
     qecode_data = None
+    start = None
+    credential = None
+    is_destroy = False
+    login_key = None
     def login_ui(self,qrcode_widget:QLabel) -> ():
         print('login')
         is_needs_login = True
@@ -143,9 +149,9 @@ class bilibiliDanmaku(object):
 
         if is_needs_login == True:
             print('显示二维码')
-            from PIL.ImageTk import PhotoImage
-            import tkinter
-            import tkinter.font
+            # from PIL.ImageTk import PhotoImage
+            # import tkinter
+            # import tkinter.font
 
             # root = None
             # if root == None:
@@ -153,12 +159,13 @@ class bilibiliDanmaku(object):
             # root.title("扫码登录")
 
             # credential = login.login_with_qrcode()  # 使用窗口显示二维码登录
-            print('显示二维码')
+            # print('显示二维码')
 
             qrcode_data = login.update_qrcode_data()
             print(qrcode_data["url"])
 
             login_key = qrcode_data["qrcode_key"]
+            self.login_key = login_key
             qrcode_image = login.make_qrcode(qrcode_data["url"])
             print(qrcode_image)
             # photo = PhotoImage(file=qrcode_image)
@@ -167,22 +174,62 @@ class bilibiliDanmaku(object):
             qrcode_widget.setPixmap(img)
             qrcode_widget.setFixedSize(150,150)
 
-            self.restore_credential(credential=credential)
+            def update_events():
+                login_key = self.login_key
+                events = login.login_with_key(login_key)
+                if "code" in events.keys() and events["code"] == 0:
+                    if events["data"]["code"] == 86101:
+                        # log.configure(text="请扫描二维码↑", fg="red", font=big_font)
+                        print('请扫描二维码↑')
+                    elif events["data"]["code"] == 86090:
+                        # log.configure(text="点下确认啊！", fg="orange", font=big_font)
+                        print('点下确认啊！')
+                    elif events["data"]["code"] == 86038:
+                        # raise LoginError("二维码过期，请扫新二维码！")
+                        print('二维码过期，请扫新二维码！')
+                    elif events["data"]["code"] == 0:
+                        print('登录成功')
+                        credential = login.parse_credential_url(events)
+                        self.restore_credential(credential=credential)
+                        self.login_success(credential=credential)
+                        return 0
+                    # if time.perf_counter() - start > 120:  # 刷新
+                    #     qrcode_data = update_qrcode_data()
+                    #     login_key = qrcode_data["qrcode_key"]
+                        # qrcode_image = make_qrcode(qrcode_data["url"])
+                        # photo = PhotoImage(file=qrcode_image)
+                        # qrcode_label = tkinter.Label(root, image=photo, width=600, height=600)
+                        # qrcode_label.pack()
+                        # start = time.perf_counter()
+                print('哈哈哈')
+                timer = threading.Timer(1,update_events)
+                timer.start()
+
+            timer = threading.Timer(1,update_events)
+            timer.start()
+
+            # self.restore_credential(credential=credential)
             return None,None
         else:
             print('使用缓存登录')
             credential = self.get_credential_cache()
 
+
+        credential, nickname = self.login_success(credential=credential)
+        return credential,nickname
+
+    def login_success(self,credential:Credential) -> ():
         try:
             credential.raise_for_no_bili_jct()  # 判断是否成功
             credential.raise_for_no_sessdata()  # 判断是否成功
         except:
             print("登陆失败。。。")
             # exit()
-        # print("欢迎，", sync(user.get_self_info(credential))['name'], "!")
+            # print("欢迎，", sync(user.get_self_info(credential))['name'], "!")
         nickname = sync(user.get_self_info(credential))['name']
-        print('昵称')
-        return credential,nickname
+        print(f'昵称:{nickname}')
+
+
 
     def start_server_ui(self):
         knowledge_base_name = ''
