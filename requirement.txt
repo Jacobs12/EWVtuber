@@ -19,3 +19,5 @@ PyQt5
 PyQt5-tools
 python-vlc
 schedule==1.2.1
+imageio==2.32.0
+pyav

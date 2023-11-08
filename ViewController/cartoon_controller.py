@@ -7,9 +7,11 @@ Editor:fengtao
 Mails:fengtao23@mails.ucas.ac.cn
 """
 
+import Utils.utils
 from ViewController.ewbase_controller import BaseController
 from EWMedia.mediaplayer import EWMediaPlayer
 from Platform.bilibili_livedanmaku import bilibiliDanmaku
+from EWMedia.camera_capture import CameraCapture
 
 
 class CartoonController(BaseController):
@@ -20,12 +22,19 @@ class CartoonController(BaseController):
         self.window.cartoon_login_button.clicked.connect(self.login_bilibili)
 
     player: EWMediaPlayer = None
+    camera: CameraCapture = None
 
     def play_video(self):
-        if self.player is None:
-            self.player = EWMediaPlayer(widget=self.window.cartoon_video_widget)
-        self.player.load_content_filepath('https://tb-video.bdstatic.com/tieba-smallvideo-transcode-crf/21_4c93be42b15bb2b0f0ff082827dc82c2_0.mp4?vt=0&pt=3&ver=&cr=2&cd=0&sid=&ft=2&tbau=2023-11-08_109fac1fd153bc5e5bbc070a8b4f241942ae24aa5c329db94e02d4a67eb3f012&ptid=8674226587')
-        self.player.play()
+        # if self.player is None:
+        #     self.player = EWMediaPlayer(widget=self.window.cartoon_video_widget)
+        # self.player.load_content_filepath('https://tb-video.bdstatic.com/tieba-smallvideo-transcode-crf/21_4c93be42b15bb2b0f0ff082827dc82c2_0.mp4?vt=0&pt=3&ver=&cr=2&cd=0&sid=&ft=2&tbau=2023-11-08_109fac1fd153bc5e5bbc070a8b4f241942ae24aa5c329db94e02d4a67eb3f012&ptid=8674226587')
+        # self.player.play()
+        # self.player.load_camera()
+        # self.player.play()
+        print(Utils.utils.get_camera_mrl())
+        if self.camera is None:
+            self.camera = CameraCapture(video_label=self.window.cartoon_video_label)
+        self.camera.open_camera()
 
     bilibili_manager = None
 
@@ -36,9 +45,7 @@ class CartoonController(BaseController):
         credential, nickname = self.bilibili_manager.login_ui(qrcode_widget=self.window.cartoon_qrcode_label)
         # self.window.shuziren_nickname_label.setText(str(nickname))
 
-    def hide_qrcode(self,is_hidden:bool):
+    def hide_qrcode(self, is_hidden: bool):
         self.window.cartoon_qrcode_label.setHidden(is_hidden)
         self.window.cartoon_qrcodecancel_button.setHidden(is_hidden)
         self.window.cartoon_login_button.setHidden(not is_hidden)
-
-

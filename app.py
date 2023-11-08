@@ -8,6 +8,7 @@ Mails:fengtao23@mails.ucas.ac.cn
 """
 import sys
 
+import Utils.utils
 from MainWindow import Ui_MainWindow
 from vtuber import Vtuber
 import os
@@ -19,7 +20,6 @@ from MainWindow import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QApplication, QDesktopWidget, QHBoxLayout, QPushButton, QWidget
 from PyQt5.QtGui import QIcon
 from MainWindow_run import MainWindowUI
-
 
 # import sys
 # from PyQt5.QtWidgets import QWidget, QApplication
@@ -51,7 +51,9 @@ def main_window() -> Ui_MainWindow:
 
 
 if __name__ == '__main__':
+
     print('欢迎使用光线AI虚拟主播系统')
+    # lst = Utils.utils.get_camera_mrl()
     app = Vtuber()
     # app.start_command_line()
     select = str(input('请输入界面模式：\n  1.命令行模式\n  2.可视化界面\n>> '))

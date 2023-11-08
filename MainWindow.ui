@@ -213,6 +213,21 @@
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#21ff06;&quot;&gt;· REC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
+          <widget class="QLabel" name="cartoon_video_label">
+           <property name="geometry">
+            <rect>
+             <x>-1</x>
+             <y>5</y>
+             <width>380</width>
+             <height>210</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+          <zorder>cartoon_video_label</zorder>
+          <zorder>label_13</zorder>
          </widget>
          <widget class="QLabel" name="label_19">
           <property name="geometry">
