@@ -31,7 +31,7 @@ class CartoonController(BaseController):
         # self.player.play()
         # self.player.load_camera()
         # self.player.play()
-        print(Utils.utils.get_camera_mrl())
+        # print(Utils.utils.get_camera_mrl())
         if self.camera is None:
             self.camera = CameraCapture(video_label=self.window.cartoon_video_label)
         self.camera.open_camera()

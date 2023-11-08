@@ -25,10 +25,11 @@ import pygame.camera
 import pygame.image
 import threading
 import os
-import imageio.v2 as imageio
+# import imageio.v2 as imageio
 from PIL import Image
 from decimal import *
 import numpy as np
+from PyQt5.QtCore import Qt
 
 
 def get_camera() -> list:
@@ -40,9 +41,9 @@ def get_camera() -> list:
 
 class CameraCapture(object):
     label: QLabel = None
-    cap:cv2.VideoCapture = None
-    CAM_NUM:int = None
-    timer:QTimer = None
+    cap: cv2.VideoCapture = None
+    CAM_NUM: int = None
+    timer: QTimer = None
 
     def __init__(self, video_label: QLabel):
         self.label = video_label
@@ -50,16 +51,16 @@ class CameraCapture(object):
 
     # 播放视频画面
     # def init_timer(self):
-        # if self.timer is None:
-        #     self.timer = QTimer(self)
-        #     self.timer.timeout.connect(self.show_pic)
+    # if self.timer is None:
+    #     self.timer = QTimer(self)
+    #     self.timer.timeout.connect(self.show_pic)
 
     def open_camera(self):
         # self.init_timer()
         # 获取选择的设备名称
         # index = self.comboBox.currentIndex()
         # print(index)
-        self.CAM_NUM = 1
+        self.CAM_NUM = 3
         # 检测该设备是否能打开
         flag = self.cap.open(self.CAM_NUM)
         print(flag)
@@ -76,7 +77,7 @@ class CameraCapture(object):
             # self.timer.start()
             # print("beginning！")
             # self.show_pic()
-            timer = threading.Timer(float(Decimal(1.0)/Decimal(30.0)), self.show_pic)
+            timer = threading.Timer(float(Decimal(1.0) / Decimal(30.0)), self.show_pic)
             timer.start()
 
     def show_pic(self):
@@ -86,24 +87,16 @@ class CameraCapture(object):
             # 视频流的长和宽
             height, width = cur_frame.shape[:2]
             pixmap = QImage(cur_frame, width, height, QImage.Format_RGB888)
-            pixmap = QPixmap.fromImage(pixmap)
+            # pixmap = QPixmap.fromImage(pixmap)
+            pixmap = QPixmap.fromImage(pixmap).scaled(380, 210)
             # 获取是视频流和label窗口的长宽比值的最大值，适应label窗口播放，不然显示不全
-            ratio = max(width / self.label.width(), height / self.label.height())
-            pixmap.setDevicePixelRatio(ratio)
+            # ratio = max(width / self.label.width(), height / self.label.height())
+            # pixmap.setDevicePixelRatio(ratio)
             # 视频流置于label中间部分播放
             # self.label.setAlignment(Qt.AlignCenter)
             self.label.setPixmap(pixmap)
             timer = threading.Timer(float(Decimal(1.0) / Decimal(30.0)), self.show_pic)
             timer.start()
-
-
-
-
-
-
-
-
-
 
     # timer: threading.Timer = None
     # camera: pygame.camera.Camera = None
