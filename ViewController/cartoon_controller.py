@@ -112,16 +112,26 @@ class CartoonController(BaseController):
         # loop = asyncio.new_event_loop()
         # loop.run_until_complete(speech.text_to_speech(text=response))
         # loop.close()
+        player = vtuber.audio_player().player
+        try:
+            player.unload()
+        finally:
+            pass
         await speech.text_to_speech(text=response)
-        vtuber.audio_player().play(filename=speech.OUTPUT)
+        player.play(filename=speech.OUTPUT)
 
     def speak_button_click(self):
+        player = vtuber.audio_player().player
+        try:
+            player.unload()
+        finally:
+            pass
         text = self.window.cartoon_myquesition_field.toPlainText()
         loop = asyncio.new_event_loop()
         loop.run_until_complete(speech.text_to_speech(text=text))
         loop.close()
         # speech.text_to_speech(text=text)
-        vtuber.audio_player().play(filename=speech.OUTPUT)
+        player.play(filename=speech.OUTPUT)
 
     def init_session(self):
         # 初始化知识库列表
