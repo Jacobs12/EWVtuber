@@ -42,12 +42,13 @@ def get_camera() -> list:
 class CameraCapture(object):
     label: QLabel = None
     cap: cv2.VideoCapture = None
-    CAM_NUM: int = None
+    CAM_NUM: int = 0
     timer: QTimer = None
 
-    def __init__(self, video_label: QLabel):
+    def __init__(self, video_label: QLabel,channel:int):
         self.label = video_label
         self.cap = cv2.VideoCapture()
+        self.CAM_NUM = channel
 
     # 播放视频画面
     # def init_timer(self):
@@ -60,7 +61,7 @@ class CameraCapture(object):
         # 获取选择的设备名称
         # index = self.comboBox.currentIndex()
         # print(index)
-        self.CAM_NUM = 3
+        # self.CAM_NUM = 3
         # 检测该设备是否能打开
         flag = self.cap.open(self.CAM_NUM)
         print(flag)
@@ -92,7 +93,7 @@ class CameraCapture(object):
             # 获取是视频流和label窗口的长宽比值的最大值，适应label窗口播放，不然显示不全
             # ratio = max(width / self.label.width(), height / self.label.height())
             # pixmap.setDevicePixelRatio(ratio)
-            # 视频流置于label中间部分播放
+            # # 视频流置于label中间部分播放
             # self.label.setAlignment(Qt.AlignCenter)
             self.label.setPixmap(pixmap)
             timer = threading.Timer(float(Decimal(1.0) / Decimal(30.0)), self.show_pic)

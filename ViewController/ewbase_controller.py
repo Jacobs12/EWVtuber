@@ -15,7 +15,11 @@ class BaseController(object):
     def __init__(self, window: UIWindow):
         super().__init__()
         self.window = window
+        self.init()
         self.setup_ui()
 
     def setup_ui(self):
+        pass
+
+    def init(self):
         pass

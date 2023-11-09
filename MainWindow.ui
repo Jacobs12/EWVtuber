@@ -106,17 +106,17 @@
            <height>609</height>
           </rect>
          </property>
-         <widget class="QTextEdit" name="cartoon_message_field">
+         <widget class="QTextEdit" name="cartoon_myquesition_field">
           <property name="geometry">
            <rect>
             <x>530</x>
             <y>480</y>
-            <width>331</width>
+            <width>291</width>
             <height>121</height>
            </rect>
           </property>
           <property name="readOnly">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
          </widget>
          <widget class="QComboBox" name="comboBox_4">
@@ -162,7 +162,7 @@
            </rect>
           </property>
           <property name="text">
-           <string>历史聊天记录：</string>
+           <string>输入你的问题：</string>
           </property>
          </widget>
          <widget class="QLineEdit" name="lineEdit">
@@ -281,7 +281,7 @@
            <string>选择知识库</string>
           </property>
          </widget>
-         <widget class="QComboBox" name="comboBox_7">
+         <widget class="QComboBox" name="cartoon_knowledgelst_box">
           <property name="geometry">
            <rect>
             <x>610</x>
@@ -314,7 +314,7 @@
            <string>正在回复：</string>
           </property>
          </widget>
-         <widget class="QTextBrowser" name="textBrowser_13">
+         <widget class="QTextBrowser" name="cartoon_queue1_browser">
           <property name="geometry">
            <rect>
             <x>110</x>
@@ -424,7 +424,7 @@ p, li { white-space: pre-wrap; }
            </property>
           </item>
          </widget>
-         <widget class="QTextBrowser" name="textBrowser_14">
+         <widget class="QTextBrowser" name="cartoon_queue2_browser">
           <property name="geometry">
            <rect>
             <x>110</x>
@@ -493,7 +493,7 @@ p, li { white-space: pre-wrap; }
            <string>删除</string>
           </property>
          </widget>
-         <widget class="QTextBrowser" name="textBrowser_15">
+         <widget class="QTextBrowser" name="cartoon_replying_browser">
           <property name="geometry">
            <rect>
             <x>110</x>
@@ -524,10 +524,102 @@ p, li { white-space: pre-wrap; }
            <string>取消</string>
           </property>
          </widget>
-         <zorder>textBrowser_15</zorder>
+         <widget class="QComboBox" name="cartoon_channel_box">
+          <property name="geometry">
+           <rect>
+            <x>600</x>
+            <y>26</y>
+            <width>161</width>
+            <height>26</height>
+           </rect>
+          </property>
+          <item>
+           <property name="text">
+            <string>默认信号源</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>输出信号源-1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>输出信号源-2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>输出信号源-3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>输出信号源-4</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>输出信号源-5</string>
+           </property>
+          </item>
+         </widget>
+         <widget class="QPushButton" name="cartoon_sendquesion_button">
+          <property name="geometry">
+           <rect>
+            <x>820</x>
+            <y>570</y>
+            <width>61</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>发送</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="cartton_sessionstop_button">
+          <property name="geometry">
+           <rect>
+            <x>400</x>
+            <y>186</y>
+            <width>81</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>停止</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="cartoon_sessionstart_button">
+          <property name="geometry">
+           <rect>
+            <x>400</x>
+            <y>150</y>
+            <width>81</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>开始</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="cartoon_speak_button">
+          <property name="geometry">
+           <rect>
+            <x>820</x>
+            <y>530</y>
+            <width>61</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>直接说</string>
+          </property>
+         </widget>
+         <zorder>cartoon_replying_browser</zorder>
          <zorder>cartoon_qrcodecancel_button</zorder>
          <zorder>cartoon_qrcode_label</zorder>
-         <zorder>cartoon_message_field</zorder>
+         <zorder>cartoon_myquesition_field</zorder>
          <zorder>comboBox_4</zorder>
          <zorder>page1_type_label_4</zorder>
          <zorder>page1_type_label_5</zorder>
@@ -538,19 +630,24 @@ p, li { white-space: pre-wrap; }
          <zorder>cartoon_videoplay_button</zorder>
          <zorder>cartoon_videostop_button</zorder>
          <zorder>page1_type_label_6</zorder>
-         <zorder>comboBox_7</zorder>
+         <zorder>cartoon_knowledgelst_box</zorder>
          <zorder>label_77</zorder>
-         <zorder>textBrowser_13</zorder>
+         <zorder>cartoon_queue1_browser</zorder>
          <zorder>pushButton_29</zorder>
          <zorder>label_78</zorder>
          <zorder>cartoon_login_button</zorder>
          <zorder>label_79</zorder>
          <zorder>comboBox_26</zorder>
-         <zorder>textBrowser_14</zorder>
+         <zorder>cartoon_queue2_browser</zorder>
          <zorder>label_80</zorder>
          <zorder>pushButton_30</zorder>
          <zorder>label_81</zorder>
          <zorder>pushButton_31</zorder>
+         <zorder>cartoon_channel_box</zorder>
+         <zorder>cartoon_sendquesion_button</zorder>
+         <zorder>cartton_sessionstop_button</zorder>
+         <zorder>cartoon_sessionstart_button</zorder>
+         <zorder>cartoon_speak_button</zorder>
         </widget>
        </widget>
        <zorder>scrollArea_3</zorder>
@@ -580,7 +677,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="scrollAreaWidgetContents">
        <property name="geometry">
         <rect>
-         <x>-561</x>
+         <x>0</x>
          <y>0</y>
          <width>659</width>
          <height>539</height>
