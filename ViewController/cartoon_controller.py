@@ -120,6 +120,7 @@ class CartoonController(BaseController):
         loop = asyncio.new_event_loop()
         loop.run_until_complete(speech.text_to_speech(text=text))
         loop.close()
+        # speech.text_to_speech(text=text)
         vtuber.audio_player().play(filename=speech.OUTPUT)
 
     def init_session(self):
