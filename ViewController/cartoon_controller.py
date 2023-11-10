@@ -124,6 +124,17 @@ class CartoonController(BaseController):
         #     pass
         # await speech.text_to_speech(text=response)
         # vtuber.audio_player().player.play(filename=speech.OUTPUT)
+        if self.player is None:
+            self.player = vtuber.audio_player()
+        else:
+            self.player.player.unload()
+        if self.speaker is None:
+            self.speaker = EdgeSpeech()
+        text = f'有位网友问:{msg.message},  {response}'
+        await self.speaker.text_to_speech(text=text)
+        # speech.text_to_speech(text=text)
+        self.speaker = speech.EdgeSpeech()
+        self.player.play(filename=speech.OUTPUT)
 
     def speak_button_click(self):
         if self.player is None:
