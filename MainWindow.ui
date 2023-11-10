@@ -170,7 +170,7 @@
            <rect>
             <x>610</x>
             <y>326</y>
-            <width>211</width>
+            <width>141</width>
             <height>21</height>
            </rect>
           </property>
@@ -349,7 +349,7 @@ p, li { white-space: pre-wrap; }
            <rect>
             <x>30</x>
             <y>80</y>
-            <width>60</width>
+            <width>51</width>
             <height>16</height>
            </rect>
           </property>
@@ -616,6 +616,49 @@ p, li { white-space: pre-wrap; }
            <string>直接说</string>
           </property>
          </widget>
+         <widget class="QPushButton" name="cartoon_roomconnect_button">
+          <property name="geometry">
+           <rect>
+            <x>770</x>
+            <y>320</y>
+            <width>91</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>连接</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="cartoon_nickname_label">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>78</y>
+            <width>191</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>无</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="cartoon_qrcodestatus_label">
+          <property name="geometry">
+           <rect>
+            <x>290</x>
+            <y>0</y>
+            <width>150</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#108001;&quot;&gt;请扫描二维码↓&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <zorder>cartoon_sessionstart_button</zorder>
          <zorder>cartoon_replying_browser</zorder>
          <zorder>cartoon_qrcodecancel_button</zorder>
          <zorder>cartoon_qrcode_label</zorder>
@@ -646,8 +689,10 @@ p, li { white-space: pre-wrap; }
          <zorder>cartoon_channel_box</zorder>
          <zorder>cartoon_sendquesion_button</zorder>
          <zorder>cartton_sessionstop_button</zorder>
-         <zorder>cartoon_sessionstart_button</zorder>
          <zorder>cartoon_speak_button</zorder>
+         <zorder>cartoon_roomconnect_button</zorder>
+         <zorder>cartoon_nickname_label</zorder>
+         <zorder>cartoon_qrcodestatus_label</zorder>
         </widget>
        </widget>
        <zorder>scrollArea_3</zorder>

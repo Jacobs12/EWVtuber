@@ -90,6 +90,7 @@ class LangchainSession(Session):
             else:
                 prompt = f'{prompt}  {count}.{item}\n'
         return prompt
+
     def host(self) -> str:
         super().host()
         host = API.vtuber_api.langchain_host()

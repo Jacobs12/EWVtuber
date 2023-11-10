@@ -20,6 +20,7 @@ import vtuber
 import EWSpeech.edge_speech as speech
 from Audio.player import AudioPlayer
 from EWSpeech.edge_speech import EdgeSpeech
+from bilibili_api import Credential
 
 
 class Msg(object):
@@ -28,6 +29,7 @@ class Msg(object):
 
 
 class CartoonController(BaseController):
+    is_login: bool = False
 
     def init(self):
         self.init_session()
@@ -61,7 +63,7 @@ class CartoonController(BaseController):
         if len(self.reply_queue) > 3:
             lst = self.reply_queue
             self.reply_queue = [lst[0], lst[1], lst[2]]
-        print(self.reply_queue)
+        # print(self.reply_queue)
 
     def pop_queue(self):
         if len(self.reply_queue) == 0:
@@ -80,12 +82,12 @@ class CartoonController(BaseController):
             msg = self.reply_queue[1]
             message = f'>> {msg.user}:{msg.message}'
             self.window.cartoon_queue2_browser.setText(message)
-        except:
+        except IndexError:
             pass
 
     def reply(self):
         msg = self.pop_queue()
-        print(msg.message)
+        # print(msg.message)
         self.reload_queue()
         user_answer = f'>> {msg.user}:{msg.message}'
 
@@ -165,7 +167,7 @@ class CartoonController(BaseController):
         msg = Msg()
         msg.user = "主播"
         msg.message = message
-        print(msg)
+        # print(msg)
         self.push_queue(msg)
         self.reload_queue()
         self.window.cartoon_myquesition_field.setText('')
@@ -192,15 +194,43 @@ class CartoonController(BaseController):
         self.camera.open_camera()
 
     bilibili_manager = None
+    bilibili_credential = None
+
+    """
+    哔哩哔哩登录
+    """
 
     def login_bilibili(self):
-        print('1')
+        if self.is_login is True:
+            self.is_login = False
+            self.window.cartoon_nickname_label.setText('未登录')
+            self.window.cartoon_login_button.setText('登录')
+            self.bilibili_credential = None
+            manager: bilibiliDanmaku = self.bilibili_manager
+            manager.clear_credential_cache()
+            self.bilibili_manager = None
+            return
+        # print('1')
         self.bilibili_manager = bilibiliDanmaku()
         self.hide_qrcode(False)
-        credential, nickname = self.bilibili_manager.login_ui(qrcode_widget=self.window.cartoon_qrcode_label)
+        credential, nickname = self.bilibili_manager.login_ui(qrcode_widget=self.window.cartoon_qrcode_label,
+                                                              target=self)
         # self.window.shuziren_nickname_label.setText(str(nickname))
+
+    def login_status_changed(self, status: str):
+        self.window.cartoon_qrcodestatus_label.setText(status)
+        self.window.cartoon_qrcodestatus_label.setStyleSheet("color: green")
+
+    def login_finished(self, info):
+        nickname = info['nickname']
+        self.bilibili_credential = info['credential']
+        self.window.cartoon_nickname_label.setText(nickname)
+        self.hide_qrcode(True)
+        self.window.cartoon_login_button.setText('退出登录')
+        self.is_login = True
 
     def hide_qrcode(self, is_hidden: bool):
         self.window.cartoon_qrcode_label.setHidden(is_hidden)
         self.window.cartoon_qrcodecancel_button.setHidden(is_hidden)
         self.window.cartoon_login_button.setHidden(not is_hidden)
+        self.window.cartoon_qrcodestatus_label.setHidden(is_hidden)

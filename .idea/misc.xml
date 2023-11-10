@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="vtuber" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="ewvtuber" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="vtuber" project-jdk-type="Python SDK" />
 </project>

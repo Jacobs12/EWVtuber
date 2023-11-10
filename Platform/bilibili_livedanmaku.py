@@ -38,6 +38,7 @@ class bilibiliDanmaku(object):
     langchain_session:LangchainSession = None
     session_type:str = 'langchain'
     timer:threading.Timer = None
+    target = None
 
     def __init__(self) -> None:
         pass
@@ -114,12 +115,15 @@ class bilibiliDanmaku(object):
         # 启动监听
         sync(monitor.connect())
 
+    def clear_credential_cache(self):
+        if self.is_credential_exist():
+            os.remove('Tmp/bilibili_credential.pickle')
+
     def restore_credential(self,credential:Credential = None):
         if credential == None:
             return
         print(credential)
-        if self.is_credential_exist():
-            os.remove('Tmp/bilibili_credential.pickle')
+        self.clear_credential_cache()
 
         with open('Tmp/bilibili_credential.pickle','wb') as f:
             pickle.dump(credential,f)
@@ -139,11 +143,12 @@ class bilibiliDanmaku(object):
     credential = None
     is_destroy = False
     login_key = None
-    def login_ui(self,qrcode_widget:QLabel) -> ():
+    def login_ui(self,qrcode_widget:QLabel,target) -> ():
         print('login')
+        self.target = target
         is_needs_login = True
         if self.is_credential_exist() == True:
-            is_needs_login == False
+            is_needs_login = False
         credential = None
 
 
@@ -181,12 +186,15 @@ class bilibiliDanmaku(object):
                     if events["data"]["code"] == 86101:
                         # log.configure(text="请扫描二维码↑", fg="red", font=big_font)
                         print('请扫描二维码↑')
+                        self.login_status_changed('请扫描二维码↓')
                     elif events["data"]["code"] == 86090:
                         # log.configure(text="点下确认啊！", fg="orange", font=big_font)
                         print('点下确认啊！')
+                        self.login_status_changed('已扫描，请确认↓')
                     elif events["data"]["code"] == 86038:
                         # raise LoginError("二维码过期，请扫新二维码！")
                         print('二维码过期，请扫新二维码！')
+                        self.login_status_changed('二维码过期，我也没办法...')
                     elif events["data"]["code"] == 0:
                         print('登录成功')
                         credential = login.parse_credential_url(events)
@@ -228,6 +236,29 @@ class bilibiliDanmaku(object):
             # print("欢迎，", sync(user.get_self_info(credential))['name'], "!")
         nickname = sync(user.get_self_info(credential))['name']
         print(f'昵称:{nickname}')
+        self.callback(nickname=nickname,credential=credential)
+        return credential,nickname
+
+    def login_status_changed(self,status:str):
+        if self.target:
+            try:
+                self.target.login_status_changed(status)
+            except:
+                print('未定义target.login_finished({})')
+
+
+    # 登录完成后回调
+    def callback(self,nickname:str,credential:Credential):
+        info = {
+            'nickname':nickname,
+            'credential':credential
+        }
+        if self.target:
+            try:
+                self.target.login_finished(info)
+            except:
+                print('未定义target.login_finished({})')
+        self.target = None
 
 
 
