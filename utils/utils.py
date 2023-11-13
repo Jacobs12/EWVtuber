@@ -8,6 +8,7 @@ Mails:fengtao23@mails.ucas.ac.cn
 """
 import sys
 import os
+
 try:
     os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 except:
@@ -29,6 +30,9 @@ def get_camera_mrl() -> list:
     pygame.camera.init()
     camera_id_list = pygame.camera.list_cameras()
     print(camera_id_list)
-    return  camera_id_list
+    return camera_id_list
+
+
+
 
 

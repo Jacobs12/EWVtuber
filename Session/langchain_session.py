@@ -139,13 +139,17 @@ class LangchainSession(Session):
 
     # 获取知识库列表
     def get_knowledge_lists(self) -> list:
-        url = f'{self.host()}/knowledge_base/list_knowledge_bases'
-        headers = self.headers()
-        response_data = requests.get(url=url)
-        response = response_data.text
-        dic = json.loads(response)
-        result: list = dic['data']
-        return result
+        try:
+            url = f'{self.host()}/knowledge_base/list_knowledge_bases'
+            headers = self.headers()
+            response_data = requests.get(url=url)
+            response = response_data.text
+            dic = json.loads(response)
+            result: list = dic['data']
+            return result
+        except:
+            print('无法获取知识库列表')
+            return ['无法获取知识库列表']
 
 
 if __name__ == '__main__':

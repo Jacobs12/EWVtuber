@@ -29,10 +29,72 @@ import pickle
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLabel
 import time
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QThread,pyqtSignal,QObject
 import threading
 
-class bilibiliDanmaku(object):
+# self.thread = QThread()
+#         w = Worker()
+#         w.finished[int].connect(self.onFinished)
+#         w.moveToThread(self.thread)
+#         self.thread.started.connect(w.work)
+#         self.thread.start()
+#     @pyqtSlot(int)
+#     def onFinished(self, i):
+#         print("Base caught finished, {}".format(i))
+class MyThread(QThread):
+    monitor = None
+    target = None
+    signal = None
+    def run(self):
+        monitor = self.monitor
+        @monitor.on("DANMU_MSG")
+        async def recv(event):
+            print('看开没开门卡哪款')
+            # 发送者UID
+            uid = event["data"]["info"][2][0]
+            # 排除自己发送的弹幕
+            # if uid == UID:
+            #     return
+            # 弹幕文本
+            msg = event["data"]["info"][1]
+            user_name = event["data"]["info"][2][1]
+            # if msg == "你好":
+            #     # 发送弹幕
+            #     await sender.send_danmaku(Danmaku("你好！"))
+            info = json.dumps(event)
+            print(info)
+            response = ''
+            # if self.session_type == 'chatglm':
+            #     if self.session == None:
+            #         self.session = ChatglmSession()
+            #     response = self.session.ask(msg, is_speak=True)
+            # else:
+            #     if self.langchain_session == None:
+            #         self.langchain_session = LangchainSession()
+            #     response, history = self.langchain_session.chat_knowledge(knowledge_base_name=knowledge_base_name,
+            #                                                               question=msg, history=[])
+            # response = self.session.ask(msg,is_speak=True)
+            print(response)
+            info = event["data"]["info"]
+            log.add(f'来自哔哩哔哩：[{user_name}(uid={uid}]:{msg}\n')
+            # log.add(f'接收到弹幕：')
+            # if '歌' in msg:
+            #     self.audio_manager.test()
+            #     return
+            # try:
+            info = {
+                'nickname': user_name,
+                'uid': uid,
+                'message': msg
+            }
+            print('===============')
+            # self.target.target.did_recieve_danmaku(info)
+            self.signal.emit(info)
+            # except:
+            #     print('音频出现错误')
+        sync(monitor.connect())
+
+class bilibiliDanmaku(QObject):
     session: ChatglmSession = None
     audio_manager: AudioManager = None
     langchain_session:LangchainSession = None
@@ -40,8 +102,8 @@ class bilibiliDanmaku(object):
     timer:threading.Timer = None
     target = None
 
-    def __init__(self) -> None:
-        pass
+    # def __init__(self) -> None:
+    #     super.__init__()
 
     def start_server(self):
         knowledge_base_name = ''
@@ -114,6 +176,110 @@ class bilibiliDanmaku(object):
                 print('音频出现错误')
         # 启动监听
         sync(monitor.connect())
+
+    monitor = None
+    thread = None
+    def recive_danmaku_mainloop(self,info):
+        print(info)
+        print('收到子线程')
+        self.target.did_recieve_danmaku(info)
+
+    recive_event_signal:pyqtSignal = pyqtSignal(dict)
+
+    def start_server_connect(self,roomid:str,credential:Credential,target):
+        self.target = target
+        # 自己直播间号
+        ROOMID = roomid
+        # 凭证 根据回复弹幕的账号填写
+        # credential = Credential(
+        #     sessdata="",
+        #     bili_jct=""
+        # )
+        # 监听直播间弹幕
+        monitor = LiveDanmaku(ROOMID, credential=credential)
+        self.monitor = monitor
+        # 用来发送弹幕
+        sender = LiveRoom(ROOMID, credential=credential)
+        # 自己的UID 可以手动填写也可以根据直播间号获取
+        UID = sync(sender.get_room_info())["room_info"]["uid"]
+
+        # info = sync(sender.get_room_info())
+        # info_json = json.dumps(info)
+        # print(info_json)
+        # @monitor.on("DANMU_MSG")
+        # async def recv(event):
+            # # 发送者UID
+            # uid = event["data"]["info"][2][0]
+            # # 排除自己发送的弹幕
+            # # if uid == UID:
+            # #     return
+            # # 弹幕文本
+            # msg = event["data"]["info"][1]
+            # user_name = event["data"]["info"][2][1]
+            # # if msg == "你好":
+            # #     # 发送弹幕
+            # #     await sender.send_danmaku(Danmaku("你好！"))
+            # info = json.dumps(event)
+            # print(info)
+            # response = ''
+            # # if self.session_type == 'chatglm':
+            # #     if self.session == None:
+            # #         self.session = ChatglmSession()
+            # #     response = self.session.ask(msg, is_speak=True)
+            # # else:
+            # #     if self.langchain_session == None:
+            # #         self.langchain_session = LangchainSession()
+            # #     response, history = self.langchain_session.chat_knowledge(knowledge_base_name=knowledge_base_name,
+            # #                                                               question=msg, history=[])
+            # # response = self.session.ask(msg,is_speak=True)
+            # print(response)
+            # info = event["data"]["info"]
+            # log.add(f'来自哔哩哔哩：[{user_name}(uid={uid}]:{msg}\n')
+            # # log.add(f'接收到弹幕：')
+            # # if '歌' in msg:
+            # #     self.audio_manager.test()
+            # #     return
+            # try:
+            #     info = {
+            #         'nickname':user_name,
+            #         'uid':uid,
+            #         'message':msg
+            #     }
+            #     self.target.did_recieve_danmaku(info)
+            # except:
+            #     print('音频出现错误')
+
+        # t = threading.Timer(1,monitor)
+        # t.start()
+        self.recive_event_signal.connect(self.recive_danmaku_mainloop)
+        t = MyThread()
+        t.monitor = monitor
+        t.signal = self.recive_event_signal
+        t.start()
+        t.target = self
+        self.thread = t
+
+
+
+
+    def monitor_start(self,monitor):
+        monitor = self.monitor
+        @monitor.on("DANMU_MSG")
+        async def recv(event):
+            print('哈哈哈')
+
+        monitor.connect()
+        t = threading.Timer(1, monitor)
+        t.start()
+
+        # 启动监听
+        # sync(monitor.connect())
+        # thread = QThread()
+        # thread.start()
+        # thread.run()
+        # monitor.connect()
+        # thread.exit()
+
 
     def clear_credential_cache(self):
         if self.is_credential_exist():
@@ -408,4 +574,11 @@ class bilibiliDanmaku(object):
         if credential != None:
             name = sync(get_self_info(credential))['name']
             print(f"欢迎，{name}!")
+
+    def destroy(self):
+        try:
+            if self.thread:
+                self.thread.exit()
+        except:
+            print('')
 

@@ -165,7 +165,7 @@
            <string>输入你的问题：</string>
           </property>
          </widget>
-         <widget class="QLineEdit" name="lineEdit">
+         <widget class="QLineEdit" name="cartoon_roomid_lineedit">
           <property name="geometry">
            <rect>
             <x>610</x>
@@ -175,7 +175,7 @@
            </rect>
           </property>
           <property name="text">
-           <string>000000</string>
+           <string>30923980</string>
           </property>
          </widget>
          <widget class="QLabel" name="label_5">
@@ -328,7 +328,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; 用户：你有多久没看《新闻联播》90后第一代主持人与王音棋&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; 用户：无内容&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
          <widget class="QPushButton" name="pushButton_29">
@@ -438,7 +438,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; 用户：你有多久没看《新闻联播》90后第一代主持人与王音棋&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; 用户：无内容&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
          <widget class="QLabel" name="label_80">
@@ -507,8 +507,8 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; 用户：你好&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; AI：坎坎坷坷军扩绿军扩军扩军扩绿军扩军扩军扩绿军扩绿军扩军扩军扩军付军扩&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; 用户：无内容&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;gt;&amp;gt; AI：无内容&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
          <widget class="QPushButton" name="cartoon_qrcodecancel_button">
@@ -658,6 +658,19 @@ p, li { white-space: pre-wrap; }
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
+         <widget class="QPushButton" name="test_button">
+          <property name="geometry">
+           <rect>
+            <x>200</x>
+            <y>540</y>
+            <width>113</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>测</string>
+          </property>
+         </widget>
          <zorder>cartoon_sessionstart_button</zorder>
          <zorder>cartoon_replying_browser</zorder>
          <zorder>cartoon_qrcodecancel_button</zorder>
@@ -666,7 +679,7 @@ p, li { white-space: pre-wrap; }
          <zorder>comboBox_4</zorder>
          <zorder>page1_type_label_4</zorder>
          <zorder>page1_type_label_5</zorder>
-         <zorder>lineEdit</zorder>
+         <zorder>cartoon_roomid_lineedit</zorder>
          <zorder>label_5</zorder>
          <zorder>cartoon_video_widget</zorder>
          <zorder>label_19</zorder>
@@ -693,6 +706,7 @@ p, li { white-space: pre-wrap; }
          <zorder>cartoon_roomconnect_button</zorder>
          <zorder>cartoon_nickname_label</zorder>
          <zorder>cartoon_qrcodestatus_label</zorder>
+         <zorder>test_button</zorder>
         </widget>
        </widget>
        <zorder>scrollArea_3</zorder>
@@ -722,7 +736,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="scrollAreaWidgetContents">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>-561</x>
          <y>0</y>
          <width>659</width>
          <height>539</height>

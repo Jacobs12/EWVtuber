@@ -22,9 +22,12 @@ from Audio.player import AudioPlayer
 from EWSpeech.edge_speech import EdgeSpeech
 from bilibili_api import Credential
 
+from Utils.thread import *
+
 
 class Msg(object):
     user: str = ''
+    uid: str = ''
     message: str = ''
 
 
@@ -42,6 +45,9 @@ class CartoonController(BaseController):
         self.window.cartoon_sendquesion_button.clicked.connect(self.send_my_question)
         self.window.cartoon_sessionstart_button.clicked.connect(self.start_session)
         self.window.cartoon_speak_button.clicked.connect(self.speak_button_click)
+        self.window.cartoon_roomconnect_button.clicked.connect(self.connect_bilibili_server)
+
+        self.window.test_button.clicked.connect(self.testt)
 
     player: EWMediaPlayer = None
     camera: CameraCapture = None
@@ -208,6 +214,7 @@ class CartoonController(BaseController):
             self.bilibili_credential = None
             manager: bilibiliDanmaku = self.bilibili_manager
             manager.clear_credential_cache()
+            manager.destroy()
             self.bilibili_manager = None
             return
         # print('1')
@@ -228,6 +235,26 @@ class CartoonController(BaseController):
         self.hide_qrcode(True)
         self.window.cartoon_login_button.setText('退出登录')
         self.is_login = True
+
+    def connect_bilibili_server(self):
+        if self.bilibili_credential is None:
+            print('未登录')
+            return
+        roomid = self.window.cartoon_roomid_lineedit.text()
+        print(roomid)
+        manager: bilibiliDanmaku = self.bilibili_manager
+        manager.start_server_connect(roomid=roomid, credential=self.bilibili_credential, target=self)
+
+    def did_recieve_danmaku(self, danmaku):
+        nickname = danmaku['nickname']
+        uid = danmaku['uid']
+        message = danmaku['message']
+        msg = Msg()
+        msg.user = nickname
+        msg.message = message
+        self.push_queue(msg)
+        self.reload_queue()
+        # self.window.cartoon_queue1_browser.setText(danmaku)
 
     def hide_qrcode(self, is_hidden: bool):
         self.window.cartoon_qrcode_label.setHidden(is_hidden)

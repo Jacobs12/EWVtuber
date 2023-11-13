@@ -62,9 +62,9 @@ class Ui_MainWindow(object):
         self.page1_type_label_5 = QtWidgets.QLabel(self.scrollAreaWidgetContents_3)
         self.page1_type_label_5.setGeometry(QtCore.QRect(520, 450, 91, 21))
         self.page1_type_label_5.setObjectName("page1_type_label_5")
-        self.lineEdit = QtWidgets.QLineEdit(self.scrollAreaWidgetContents_3)
-        self.lineEdit.setGeometry(QtCore.QRect(610, 326, 141, 21))
-        self.lineEdit.setObjectName("lineEdit")
+        self.cartoon_roomid_lineedit = QtWidgets.QLineEdit(self.scrollAreaWidgetContents_3)
+        self.cartoon_roomid_lineedit.setGeometry(QtCore.QRect(610, 326, 141, 21))
+        self.cartoon_roomid_lineedit.setObjectName("cartoon_roomid_lineedit")
         self.label_5 = QtWidgets.QLabel(self.scrollAreaWidgetContents_3)
         self.label_5.setGeometry(QtCore.QRect(550, 330, 60, 16))
         self.label_5.setObjectName("label_5")
@@ -174,9 +174,12 @@ class Ui_MainWindow(object):
         self.cartoon_nickname_label.setGeometry(QtCore.QRect(100, 78, 191, 20))
         self.cartoon_nickname_label.setObjectName("cartoon_nickname_label")
         self.cartoon_qrcodestatus_label = QtWidgets.QLabel(self.scrollAreaWidgetContents_3)
-        self.cartoon_qrcodestatus_label.setGeometry(QtCore.QRect(290, 0, 150, 20))
+        self.cartoon_qrcodestatus_label.setGeometry(QtCore.QRect(290, 0, 150, 31))
         self.cartoon_qrcodestatus_label.setAlignment(QtCore.Qt.AlignCenter)
         self.cartoon_qrcodestatus_label.setObjectName("cartoon_qrcodestatus_label")
+        self.test_button = QtWidgets.QPushButton(self.scrollAreaWidgetContents_3)
+        self.test_button.setGeometry(QtCore.QRect(200, 540, 113, 32))
+        self.test_button.setObjectName("test_button")
         self.cartoon_sessionstart_button.raise_()
         self.cartoon_replying_browser.raise_()
         self.cartoon_qrcodecancel_button.raise_()
@@ -185,7 +188,7 @@ class Ui_MainWindow(object):
         self.comboBox_4.raise_()
         self.page1_type_label_4.raise_()
         self.page1_type_label_5.raise_()
-        self.lineEdit.raise_()
+        self.cartoon_roomid_lineedit.raise_()
         self.label_5.raise_()
         self.cartoon_video_widget.raise_()
         self.label_19.raise_()
@@ -212,6 +215,7 @@ class Ui_MainWindow(object):
         self.cartoon_roomconnect_button.raise_()
         self.cartoon_nickname_label.raise_()
         self.cartoon_qrcodestatus_label.raise_()
+        self.test_button.raise_()
         self.scrollArea_3.setWidget(self.scrollAreaWidgetContents_3)
         self.scrollArea_3.raise_()
         self.label_2.raise_()
@@ -432,7 +436,7 @@ class Ui_MainWindow(object):
         self.comboBox_4.setItemText(1, _translate("MainWindow", "畅聊"))
         self.page1_type_label_4.setText(_translate("MainWindow", "AI问答模式："))
         self.page1_type_label_5.setText(_translate("MainWindow", "输入你的问题："))
-        self.lineEdit.setText(_translate("MainWindow", "000000"))
+        self.cartoon_roomid_lineedit.setText(_translate("MainWindow", "30923980"))
         self.label_5.setText(_translate("MainWindow", "房间号："))
         self.label_13.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#21ff06;\">· REC</span></p></body></html>"))
         self.label_19.setText(_translate("MainWindow", "当前直播画面："))
@@ -446,7 +450,7 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：你有多久没看《新闻联播》90后第一代主持人与王音棋</p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p></body></html>"))
         self.pushButton_29.setText(_translate("MainWindow", "删除"))
         self.label_78.setText(_translate("MainWindow", "用户："))
         self.cartoon_login_button.setText(_translate("MainWindow", "登录"))
@@ -459,7 +463,7 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：你有多久没看《新闻联播》90后第一代主持人与王音棋</p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p></body></html>"))
         self.label_80.setText(_translate("MainWindow", "回复信息列表："))
         self.pushButton_30.setText(_translate("MainWindow", "删除"))
         self.label_81.setText(_translate("MainWindow", "平台："))
@@ -468,8 +472,8 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：你好</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：坎坎坷坷军扩绿军扩军扩军扩绿军扩军扩军扩绿军扩绿军扩军扩军扩军付军扩</p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
         self.cartoon_qrcodecancel_button.setText(_translate("MainWindow", "取消"))
         self.cartoon_channel_box.setItemText(0, _translate("MainWindow", "默认信号源"))
         self.cartoon_channel_box.setItemText(1, _translate("MainWindow", "输出信号源-1"))
@@ -484,6 +488,7 @@ class Ui_MainWindow(object):
         self.cartoon_roomconnect_button.setText(_translate("MainWindow", "连接"))
         self.cartoon_nickname_label.setText(_translate("MainWindow", "无"))
         self.cartoon_qrcodestatus_label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#108001;\">请扫描二维码↓</span></p></body></html>"))
+        self.test_button.setText(_translate("MainWindow", "测"))
         self.llm_input_field.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
