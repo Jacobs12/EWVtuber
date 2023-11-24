@@ -1,3 +1,5 @@
+import time
+
 import requests
 import json
 
@@ -99,6 +101,8 @@ class LangchainSession(Session):
     # '''============================chat===================================='''
 
     def chat_knowledge(self, knowledge_base_name: str = '', question: str = '', history: list = None) -> (str, list):
+        # time.sleep(5)
+        # return '你好呀',[]
         if knowledge_base_name is None or knowledge_base_name == '':
             knowledge_base_name = 'ewangcom'
         question = f'{self.pre_question()}{question}'

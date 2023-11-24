@@ -41,7 +41,7 @@ class AudioPlayer(object):
         self.player = self.mixer.music
 
     def play(self, filename: str = ''):
-        if os.path.exists(filename) == False or os.path.isfile(filename) == False:
+        if os.path.exists(filename) is False or os.path.isfile(filename) is False:
             print('当前播放的文件路径有误')
             return
         try:

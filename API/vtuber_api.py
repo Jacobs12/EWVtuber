@@ -11,3 +11,8 @@ Mails:fengtao23@mails.ucas.ac.cn
 def langchain_host() -> str:
     host = 'http://172.23.0.191:7866'
     return host
+
+
+def shuziren_script_lists() -> str:
+    url = 'http://172.23.0.191:10010/get_script_lists'
+    return url
