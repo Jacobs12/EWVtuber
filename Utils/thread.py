@@ -12,13 +12,17 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject
 class MyThread(QThread):
     func = None
     signal = None
+    parameter = None
 
     def __init__(self):
         super().__init__()
 
     def run(self):
         if self.func is not None:
-            self.func()
+            if self.parameter is not None:
+                self.func(self.parameter)
+            else:
+                self.func()
 
     def get_mainloop(self, message: str):
         print(message)
@@ -68,6 +72,17 @@ class Thread(QObject):
         t.func = func
         t.target = self
         t.start()
+
+    def start_parameter(self,func,parameter):
+        self.recive_event_signal.connect(self.did_recieve_signal)
+        t = MyThread()
+        self.thread = t
+        t.signal = self.recive_event_signal
+        t.parameter = parameter
+        t.func = func
+        t.target = self
+        t.start()
+
 
     def get_mainloop(self, message: str, func):
         self.func = func

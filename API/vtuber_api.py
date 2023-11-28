@@ -16,3 +16,7 @@ def langchain_host() -> str:
 def shuziren_script_lists() -> str:
     url = 'http://172.23.0.191:10010/get_script_lists'
     return url
+
+def shuziren_script_insert() -> str:
+    url = 'http://172.23.0.191:10010/insert_script'
+    return url
