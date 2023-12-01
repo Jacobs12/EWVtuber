@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 879, 659))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(-781, 0, 879, 659))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents_2)
         self.label_2.setGeometry(QtCore.QRect(10, 10, 821, 41))
@@ -45,7 +45,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollArea_3.setObjectName("scrollArea_3")
         self.scrollAreaWidgetContents_3 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 879, 609))
+        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(-781, 0, 879, 609))
         self.scrollAreaWidgetContents_3.setObjectName("scrollAreaWidgetContents_3")
         self.cartoon_myquesition_field = QtWidgets.QTextEdit(self.scrollAreaWidgetContents_3)
         self.cartoon_myquesition_field.setGeometry(QtCore.QRect(530, 480, 291, 121))
@@ -233,7 +233,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 659, 539))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(-561, 0, 659, 539))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.llm_input_field = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
         self.llm_input_field.setGeometry(QtCore.QRect(100, 180, 371, 101))
@@ -316,18 +316,18 @@ class Ui_MainWindow(object):
         self.label_15 = QtWidgets.QLabel(self.shuziren)
         self.label_15.setGeometry(QtCore.QRect(40, 180, 71, 16))
         self.label_15.setObjectName("label_15")
-        self.textBrowser = QtWidgets.QTextBrowser(self.shuziren)
-        self.textBrowser.setGeometry(QtCore.QRect(120, 180, 281, 101))
-        self.textBrowser.setObjectName("textBrowser")
+        self.shuziren_replying_browser = QtWidgets.QTextBrowser(self.shuziren)
+        self.shuziren_replying_browser.setGeometry(QtCore.QRect(120, 180, 281, 101))
+        self.shuziren_replying_browser.setObjectName("shuziren_replying_browser")
         self.label_16 = QtWidgets.QLabel(self.shuziren)
         self.label_16.setGeometry(QtCore.QRect(30, 310, 71, 16))
         self.label_16.setObjectName("label_16")
-        self.textBrowser_2 = QtWidgets.QTextBrowser(self.shuziren)
-        self.textBrowser_2.setGeometry(QtCore.QRect(120, 300, 281, 101))
-        self.textBrowser_2.setObjectName("textBrowser_2")
-        self.textBrowser_3 = QtWidgets.QTextBrowser(self.shuziren)
-        self.textBrowser_3.setGeometry(QtCore.QRect(120, 430, 281, 101))
-        self.textBrowser_3.setObjectName("textBrowser_3")
+        self.shuziren_queue1_browser = QtWidgets.QTextBrowser(self.shuziren)
+        self.shuziren_queue1_browser.setGeometry(QtCore.QRect(120, 300, 281, 101))
+        self.shuziren_queue1_browser.setObjectName("shuziren_queue1_browser")
+        self.shuziren_queue2_browser = QtWidgets.QTextBrowser(self.shuziren)
+        self.shuziren_queue2_browser.setGeometry(QtCore.QRect(120, 430, 281, 101))
+        self.shuziren_queue2_browser.setObjectName("shuziren_queue2_browser")
         self.pushButton_3 = QtWidgets.QPushButton(self.shuziren)
         self.pushButton_3.setGeometry(QtCore.QRect(410, 250, 81, 32))
         self.pushButton_3.setObjectName("pushButton_3")
@@ -416,10 +416,10 @@ class Ui_MainWindow(object):
         self.shuziren_nickname_label.raise_()
         self.label_14.raise_()
         self.label_15.raise_()
-        self.textBrowser.raise_()
+        self.shuziren_replying_browser.raise_()
         self.label_16.raise_()
-        self.textBrowser_2.raise_()
-        self.textBrowser_3.raise_()
+        self.shuziren_queue1_browser.raise_()
+        self.shuziren_queue2_browser.raise_()
         self.pushButton_3.raise_()
         self.pushButton_4.raise_()
         self.pushButton_5.raise_()
@@ -597,20 +597,20 @@ class Ui_MainWindow(object):
         self.shuziren_nickname_label.setText(_translate("MainWindow", "未登录"))
         self.label_14.setText(_translate("MainWindow", "回复信息列表："))
         self.label_15.setText(_translate("MainWindow", "正在回复："))
-        self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.shuziren_replying_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
         self.label_16.setText(_translate("MainWindow", "等待回复↑："))
-        self.textBrowser_2.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.shuziren_queue1_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
-        self.textBrowser_3.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.shuziren_queue2_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
@@ -646,6 +646,7 @@ class Ui_MainWindow(object):
         self.shuziren_qrcode_label.setText(_translate("MainWindow", "二维码"))
         self.shuziren_qrcodestatus_label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#108001;\">请扫描二维码↓</span></p></body></html>"))
         self.shuziren_qrcodecancel_button.setText(_translate("MainWindow", "取消"))
+        self.shuziren_roomid_lineEdit.setText(_translate("MainWindow", "30923980"))
         self.shuziren_roomid_button.setText(_translate("MainWindow", "连接"))
         self.label_7.setText(_translate("MainWindow", "知识库问答"))
         self.label_8.setText(_translate("MainWindow", "知识库管理"))

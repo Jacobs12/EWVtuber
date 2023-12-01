@@ -19,6 +19,18 @@ import API.vtuber_api
 from Utils.thread import *
 from bilibili_api import Credential
 
+
+class Msg(object):
+    user: str = ''
+    uid: str = ''
+    message: str = ''
+    status: int = 0  # 0-未回答 1-获取回答中 2-已回答
+    thread: Thread = None
+    knowledge: str = None
+    response: str = None
+    vid: str = None
+
+
 class ShuzirenController(BaseController):
     player: EWMediaPlayer = None
     scripts_array = []
@@ -38,6 +50,109 @@ class ShuzirenController(BaseController):
         self.hide_qrcode(True)
 
     t = None
+    # 等待回复列表
+    reply_queue: [] = []
+    is_autonext = False
+
+    def push_queue(self, message: Msg):
+        self.reply_queue.insert(0, message)
+        if len(self.reply_queue) > 3:
+            lst = self.reply_queue
+            self.reply_queue = [lst[0], lst[1], lst[2]]
+        # print(self.reply_queue)
+
+    def pop_queue(self):
+        if len(self.reply_queue) == 0:
+            return None
+        msg = self.reply_queue[0]
+        self.reply_queue.remove(msg)
+        return msg
+
+    def reload_queue(self):
+        self.window.shuziren_queue1_browser.setText('')
+        self.window.shuziren_queue2_browser.setText('')
+        try:
+            msg = self.reply_queue[0]
+            message = f'>> {msg.user}:{msg.message}'
+            if msg.response is not None:
+                message = f'>> {msg.user}:{msg.message}\n>> AI:{msg.response}'
+            self.window.shuziren_queue1_browser.setText(message)
+            msg = self.reply_queue[1]
+            message = f'>> {msg.user}:{msg.message}'
+            if msg.response is not None:
+                message = f'>> {msg.user}:{msg.message}\n>> AI:{msg.response}'
+            self.window.shuziren_queue2_browser.setText(message)
+        except IndexError:
+            print('IndexError')
+        self.check_autoreply()
+
+    player_thread = None
+
+    is_replying = False
+
+    def check_autoreply(self):
+        if self.player_thread is not None or self.is_replying is True:
+            return
+        if self.is_autonext:
+            self.reply()
+
+
+    def reply(self):
+        msg = self.pop_queue()
+        if msg is None:
+            return
+        else:
+            self.is_replying = True
+        # print(msg.message)
+        self.reload_queue()
+        user_answer = f'>> {msg.user}:{msg.message}'
+
+        reply = f'>> AI正在思考中...'
+        message = f'{user_answer}\n{reply}'
+        self.window.shuziren_replying_browser.setText(message)
+        # t = threading.Thread(target=self.thinking(msg), name='thinking')
+        # t.start()
+        # t.join(15)
+        # asyncio.run(self.thinking(msg=msg))
+        self.msg = msg
+        self.send_request(msg=msg)
+
+    request_thread = None
+
+    def send_request(self, msg: Msg):
+        if self.request_thread is not None:
+            print('请等待问答完成')
+            return
+        t = Thread()
+        self.request_thread = t
+        t.start(func=self.thinking)
+
+    def thinking(self):
+        msg = self.msg
+        user_answer = f'>> {msg.user}:{msg.message}'
+        question = msg.message
+
+        if msg.response is None:
+            content = requests.get(f'http://172.23.0.191:10010/get_answer?question={question}')
+            response_dic = json.loads(content.text)
+            response = response_dic['a']
+            msg.response = response
+            msg.vid = response_dic['vid']
+            self.insert_vid(msg.vid)
+            self.request_thread.get_mainloop(message=response, func=self.ai_response)
+        else:
+            self.request_thread.get_mainloop(message=msg.response, func=self.ai_response)
+
+    def ai_response(self, response: str):
+        print(f'ai_response:{response}')
+        msg = self.msg
+        user_answer = f'>> {msg.user}:{msg.message}'
+        reply = f'>> AI:{response}'
+        message = f'{user_answer}\n{reply}'
+
+        self.window.shuziren_replying_browser.setText(message)
+
+    msg = None
 
     def play_video(self):
         if self.player is None:
@@ -45,7 +160,7 @@ class ShuzirenController(BaseController):
         # self.player.load_content_filepath('Tmp/1.mp4')
         self.player.load_stream('rtmp://172.23.0.199:1935/live/stream')
         self.player.play()
-
+        self.is_autonext = True
 
     # 话术
     def get_scripts_lists(self):
@@ -108,6 +223,7 @@ class ShuzirenController(BaseController):
     bilibili_manager = None
     is_login = False
     bilibili_credential = None
+
     def login_bilibili(self):
         if self.is_login is True:
             self.is_login = False
@@ -150,50 +266,55 @@ class ShuzirenController(BaseController):
         nickname = danmaku['nickname']
         uid = danmaku['uid']
         message = danmaku['message']
-        # msg = Msg()
-        # msg.user = nickname
-        # msg.message = message
-        # self.push_queue(msg)
-        # self.reload_queue()
-        # self.add_message(msg)
-        # self.window.cartoon_queue1_browser.setText(danmaku)
+        print(message)
+        msg = Msg()
+        msg.user = nickname
+        msg.message = message
+        self.window.shuziren_queue1_browser.setText(message)
+        self.push_queue(msg)
+        self.reload_queue()
+        self.add_message(msg)
 
-    # message_thread_lst = []
-    # thread_tag: int = 100
+    message_thread_lst = []
+    thread_tag: int = 100
 
-    # def add_message(self, msg: Msg):
-    #     print('')
-    #     t = Thread()
-    #     t.tag = self.thread_tag
-    #     self.thread_tag += 1
-    #     self.message_thread_lst.insert(0, t)
-    #     msg.thread = t
-    #     index = self.window.cartoon_knowledgelst_box.currentIndex()
-    #     knowledge_selected = self.knowledge_lst[index]
-    #     msg.knowledge = knowledge_selected
-    #     t.start(func=self.run_message_request)
-    #
-    # def run_message_request(self):
-    #     t = self.message_thread_lst[0]
-    #     msg = None
-    #     for obj in self.reply_queue:
-    #         if obj.thread is None:
-    #             continue
-    #         if obj.thread.tag == t.tag:
-    #             msg = obj
-    #     if msg is None:
-    #         return
-    #     question = msg.message
-    #     knowledge_selected = msg.knowledge
-    #     response, history = self.langchain_session.chat_knowledge(knowledge_base_name=knowledge_selected,
-    #                                                               question=question, history=[])
-    #     msg.response = response
-    #     t.get_mainloop(message=response, func=self.did_message_response)
-    #     msg.thread = None
-    #     self.message_thread_lst.remove(t)
-    #
-    # def did_message_response(self, response):
-    #     self.reload_queue()
+    def add_message(self, msg: Msg):
+        t = Thread()
+        t.tag = self.thread_tag
+        self.thread_tag += 1
+        self.message_thread_lst.insert(0, t)
+        msg.thread = t
+        t.start(func=self.run_message_request)
+
+    def run_message_request(self):
+        t = self.message_thread_lst[0]
+        msg = None
+        for obj in self.reply_queue:
+            if obj.thread is None:
+                continue
+            if obj.thread.tag == t.tag:
+                msg = obj
+        if msg is None:
+            return
+        question = msg.message
+        content = requests.get(f'http://172.23.0.191:10010/get_answer?question={question}')
+        response_dic = json.loads(content.text)
+        response = response_dic['a']
+        msg.response = response
+        msg.vid = response_dic['vid']
+        self.insert_vid(msg.vid)
+        t.get_mainloop(message=response, func=self.did_message_response)
+        msg.thread = None
+        self.message_thread_lst.remove(t)
+
+    def did_message_response(self, response):
+        self.reload_queue()
+
+    def insert_vid(self, vid: str):
+        try:
+            requests.get(f'http://172.23.0.191:10010/insert_script?video_id={vid}')
+        except:
+            pass
 
     def hide_qrcode(self, is_hidden: bool):
         self.window.shuziren_qrcode_label.setHidden(is_hidden)
