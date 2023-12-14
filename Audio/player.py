@@ -54,6 +54,12 @@ class AudioPlayer(object):
         self.player.set_volume(1.0)
         self.player.play(1)
 
+    completion_handler = None
+
+    def play_completion_handler(self, filename: str, completion):
+        self.completion_handler = completion
+        self.play()
+
     # 暂停播放音频
     def pause(self):
         self.player.pause()

@@ -26,38 +26,42 @@ class LangchainSession(Session):
             print(history)
 
     def chat_normal(self, question: str = '', history: list = None) -> (str, list):
-        url = f"{self.host()}/chat/chat"
-        headers = self.headers()
+        response = ''
+        try:
+            url = f"{self.host()}/chat/chat"
+            headers = self.headers()
 
-        if history is None:
-            history = []
-        question = self.pre_question() + question
-        print(question)
-        params = {
-            "query": question,
-            "history": history,
-            "stream": False,
-            "model_name": "chatglm2-6b",
-            "temperature": 0.7,
-            "prompt_name": "llm_chat"
-        }
-        data = json.dumps(params)
-        print(params)
-        response_data = requests.post(url=url, data=data, headers=headers)
-
-        response = response_data.text
-        log.add(f'user:{question}\n   AI:{response}')
-        history = [
-            {
-                "role": "user",
-                "content": question
-            },
-            {
-                "role": "assistant",
-                "content": response
+            if history is None:
+                history = []
+            question = self.pre_question() + question
+            print(question)
+            params = {
+                "query": question,
+                "history": history,
+                "stream": False,
+                "model_name": "chatglm2-6b",
+                "temperature": 0.7,
+                "prompt_name": "llm_chat"
             }
-        ]
-        print(response)
+            data = json.dumps(params)
+            print(params)
+            response_data = requests.post(url=url, data=data, headers=headers)
+
+            response = response_data.text
+            log.add(f'user:{question}\n   AI:{response}')
+            history = [
+                {
+                    "role": "user",
+                    "content": question
+                },
+                {
+                    "role": "assistant",
+                    "content": response
+                }
+            ]
+            print(response)
+        except:
+            print('未连接服务器')
         # if is_speak:
         #     speaker = Speaker()
         #     speaker.speak(response)
