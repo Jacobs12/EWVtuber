@@ -48,8 +48,8 @@ class Vtuber(object):
      # def click(self):
      #    print('哈哈哈哈哈哈哈哈')
 
-    def play_test(self):
-        self.audio_player.test()
+    def play_test(self,completion_handler):
+        self.audio_player.test_completion_handler(completion_handler=completion_handler)
 
     def click(self):
         print('哈哈哈哈哈哈哈')

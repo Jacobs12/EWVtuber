@@ -24,6 +24,9 @@ class SettingController(BaseController):
             self.window.page1_playtest_button.setText('试音')
             self.window.setting_status_label.setText('无')
         else:
-            Vtuber().play_test()
+            def completion_handler():
+                self.window.page1_playtest_button.setText('试音')
+                self.window.setting_status_label.setText('无')
+            Vtuber().play_test(completion_handler=completion_handler)
             self.window.page1_playtest_button.setText('停止试音')
             self.window.setting_status_label.setText('当前正在试音...')

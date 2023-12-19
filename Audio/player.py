@@ -10,7 +10,7 @@ import os
 
 try:
     os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-except:
+except IndexError:
     pass
 import sys
 
@@ -18,6 +18,7 @@ import pygame
 import sounddevice as sd
 import os
 import Utils.utils
+import threading
 
 
 class AudioPlayer(object):
@@ -58,7 +59,22 @@ class AudioPlayer(object):
 
     def play_completion_handler(self, filename: str, completion):
         self.completion_handler = completion
-        self.play()
+        self.play(filename=filename)
+        self.start_timer()
+
+    def start_timer(self):
+        timer = threading.Timer(0.5, self.refresh)
+        timer.start()
+
+    def refresh(self):
+        current_postion = self.player.get_pos()
+        if current_postion < 0:
+            if self.completion_handler is not None:
+                self.completion_handler()
+            return
+        print(current_postion)
+        timer = threading.Timer(0.5, self.refresh)
+        timer.start()
 
     # 暂停播放音频
     def pause(self):
@@ -68,10 +84,17 @@ class AudioPlayer(object):
     def unpause(self):
         self.player.unpause()
 
-    def test(self):
+    def test_completion_handler(self, completion_handler):
+
         platform = Utils.utils.get_system_platform()
         # print(platform)
         if platform == 'win':
             self.play(filename='Tmp\\1.mp3')
         else:
-            self.play(filename='Tmp/1.mp3')
+            def completion():
+                print('audio completion')
+                if completion_handler is not None:
+                    completion_handler()
+
+            # self.play(filename='Tmp/1.mp3')
+            self.play_completion_handler(filename='Tmp/1.mp3', completion=completion)

@@ -14,10 +14,11 @@ import edge_tts
 
 
 TEXT = "11月3日，上海陆家嘴金融贸易区开发股份有限公司（下称“陆家嘴”）发布公告称，控股子公司苏州绿岸房地产开发有限公司（以下简称“苏州绿岸”）名下14块土地存在污染，且污染面积和污染程度远超苏钢集团挂牌出让时所披露的污染情况。"
-VOICE = "zh-CN-YunxiaNeural"
+# VOICE = "zh-CN-YunxiNeural"
 OUTPUT = "Buffer/Audio/speech.mp3"
 # OUTPUT = "Buffer/Audio/speech.mp3"
-# VOICE = "zh-CN-XiaoyiNeural"
+VOICE = "zh-CN-XiaoyiNeural"
+# VOICE = "zh-CN-YunxiaNeural"
 
 
 # WEBVTT_FILE = "test.vtt"
@@ -35,7 +36,7 @@ OUTPUT = "Buffer/Audio/speech.mp3"
 class EdgeSpeech(object):
 
     async def text_to_speech(self,text: str):
-        communicate = edge_tts.Communicate(text, VOICE)
+        communicate = edge_tts.Communicate(text, VOICE,rate='+0%')
         await communicate.save(OUTPUT)
 
 
