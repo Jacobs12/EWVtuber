@@ -40,7 +40,7 @@
      <enum>Qt::RightToLeft</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="bilibili">
      <widget class="QScrollArea" name="scrollArea_2">
@@ -58,7 +58,7 @@
       <widget class="QWidget" name="scrollAreaWidgetContents_2">
        <property name="geometry">
         <rect>
-         <x>-781</x>
+         <x>0</x>
          <y>0</y>
          <width>879</width>
          <height>659</height>
@@ -100,7 +100,7 @@
         <widget class="QWidget" name="scrollAreaWidgetContents_3">
          <property name="geometry">
           <rect>
-           <x>-781</x>
+           <x>0</x>
            <y>0</y>
            <width>879</width>
            <height>609</height>
@@ -736,7 +736,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="scrollAreaWidgetContents">
        <property name="geometry">
         <rect>
-         <x>-561</x>
+         <x>0</x>
          <y>0</y>
          <width>659</width>
          <height>539</height>
@@ -1515,6 +1515,21 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="xuniren">
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>0</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>虚拟人直播</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="setting">
      <widget class="QLabel" name="page1_title_label_2">
       <property name="geometry">
@@ -1590,7 +1605,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>400</y>
+      <y>460</y>
       <width>141</width>
       <height>61</height>
      </rect>
@@ -1636,6 +1651,19 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="text">
      <string>数字人直播</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="tab_xuniren_button">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>虚拟人直播</string>
     </property>
    </widget>
   </widget>

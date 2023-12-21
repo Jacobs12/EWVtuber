@@ -14,6 +14,7 @@ from ViewController.cartoon_controller import CartoonController
 from ViewController.shuziren_controller import ShuzirenController
 from ViewController.llm_controller import LLMController
 from ViewController.setting_controller import SettingController
+from ViewController.xuniren_controller import XunirenController
 
 
 # python -m PyQt5.uic.pyuic MainWindow.ui -o MainWindow.py
@@ -40,6 +41,7 @@ class MainWindowUI(QMainWindow, Ui_MainWindow):
         self.tab_knowledge_button.clicked.connect(self.knowledge_button_click)
         self.tab_knowledgemanage_button.clicked.connect(self.knowledge_manage_click)
         self.tab_ready_button.clicked.connect(self.setting_button_click)
+        self.tab_xuniren_button.clicked.connect(self.xuniren_button_click)
 
     # 设置应用界面
     def setup_pages(self):
@@ -51,6 +53,7 @@ class MainWindowUI(QMainWindow, Ui_MainWindow):
         self.setup_knowledge_homepage()
         self.setup_knowledge_manage()
         self.setup_setting_homepage()
+        self.setup_xuniren_homepage()
 
 # """
 # ===========================================================================
@@ -66,6 +69,8 @@ class MainWindowUI(QMainWindow, Ui_MainWindow):
 
     #     设置llm聊天界面
     llm_controller: LLMController = None
+
+    xuniren_controller:XunirenController = None
 
     def setup_llm_homepage(self):
         print('')
@@ -84,6 +89,9 @@ class MainWindowUI(QMainWindow, Ui_MainWindow):
     #     设置知识库管理界面
     def setup_knowledge_manage(self):
         print('')
+
+    def setup_xuniren_homepage(self):
+        self.xuniren_controller = XunirenController(self)
 
     # 设置设置界面
 
@@ -114,5 +122,8 @@ class MainWindowUI(QMainWindow, Ui_MainWindow):
     def knowledge_manage_click(self):
         self.stackedWidget.setCurrentIndex(4)
 
-    def setting_button_click(self):
+    def xuniren_button_click(self):
         self.stackedWidget.setCurrentIndex(5)
+
+    def setting_button_click(self):
+        self.stackedWidget.setCurrentIndex(6)
