@@ -52,7 +52,7 @@ def main_window() -> Ui_MainWindow:
 
 if __name__ == '__main__':
 
-    print('欢迎使用光线AI虚拟主播系统')
+    print('欢迎使用光线AI虚拟主播系统') 
     # lst = Utils.utils.get_camera_mrl()
     app = Vtuber()
     # app.start_command_line()
