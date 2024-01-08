@@ -12,7 +12,7 @@ Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved.
 import requests
 import json
 
-import log
+from Utils import log
 from EWSpeech.speech import Speaker
 
 

@@ -1,21 +1,8 @@
-from .common import Common
-from .logger import Configure_logger
-from .config import Config
-
-
-class Video:
-    def __init__(self, config_path):  
-        self.config = Config(config_path)
-        self.common = Common()
-
-        # 日志文件路径
-        file_path = "./Log/Log-" + self.common.get_bj_time(1) + ".txt"
-        Configure_logger(file_path)
-
-
-    # 音频转视频 排队合成
-    def wav2video(self, ):
-        pass
-
-
-    
+"""
+EWVtuber
+项目名称：虚拟主播软件
+版权所有：北京光线传媒股份有限公司
+技术支持：北京光线传媒股份有限公司
+Editor:fengtao
+Mails:fengtao23@mails.ucas.ac.cn
+"""

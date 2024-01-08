@@ -12,23 +12,21 @@ Copyright (c) 2023 by 北京光线传媒股份有限公司, All Rights Reserved.
 import json
 import os.path
 
-from bilibili_api import Credential, Danmaku, sync
+from bilibili_api import Credential
 from bilibili_api.live import LiveDanmaku, LiveRoom
 
-import log
+from Utils import log
 from Session.chatglm_session import ChatglmSession
 from EWSpeech.speech import Speaker
 from Audio.audio import AudioManager
 from bilibili_api.login import login_with_password, login_with_sms, send_sms, PhoneNumber, Check
 from bilibili_api.user import get_self_info
 from bilibili_api import settings
-from bilibili_api import sync
 from bilibili_api import login, user, sync
 from  Session.langchain_session import LangchainSession
 import pickle
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLabel
-import time
 from PyQt5.QtCore import Qt, QThread,pyqtSignal,QObject
 import threading
 

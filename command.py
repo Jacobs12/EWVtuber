@@ -14,8 +14,7 @@ from Audio.audio import AudioManager
 from Session.chatglm_session import ChatglmSession
 from Platform.bilibili_livedanmaku import bilibiliDanmaku
 from Session.langchain_session import  LangchainSession
-from Audio.player import AudioPlayer
-import log
+from Utils import log
 import vtuber
 
 

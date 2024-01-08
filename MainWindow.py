@@ -117,7 +117,7 @@ class Ui_MainWindow(object):
         self.label_79.setObjectName("label_79")
         self.cartoon_qrcode_label = QtWidgets.QLabel(self.scrollAreaWidgetContents_3)
         self.cartoon_qrcode_label.setGeometry(QtCore.QRect(290, 30, 150, 150))
-        self.cartoon_qrcode_label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.cartoon_qrcode_label.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
         self.cartoon_qrcode_label.setObjectName("cartoon_qrcode_label")
         self.comboBox_26 = QtWidgets.QComboBox(self.scrollAreaWidgetContents_3)
         self.comboBox_26.setGeometry(QtCore.QRect(90, 35, 191, 26))
@@ -391,7 +391,7 @@ class Ui_MainWindow(object):
         self.shuziren_script_button.setObjectName("shuziren_script_button")
         self.shuziren_qrcode_label = QtWidgets.QLabel(self.shuziren)
         self.shuziren_qrcode_label.setGeometry(QtCore.QRect(310, 70, 150, 150))
-        self.shuziren_qrcode_label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.shuziren_qrcode_label.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
         self.shuziren_qrcode_label.setObjectName("shuziren_qrcode_label")
         self.shuziren_qrcodestatus_label = QtWidgets.QLabel(self.shuziren)
         self.shuziren_qrcodestatus_label.setGeometry(QtCore.QRect(310, 40, 150, 31))
@@ -510,14 +510,16 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.tab_llm_button.setText(_translate("MainWindow", "LLM问答"))
-        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">二次元直播</span></p></body></html>"))
+        self.label_2.setText(_translate("MainWindow",
+                                        "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">二次元直播</span></p></body></html>"))
         self.comboBox_4.setItemText(0, _translate("MainWindow", "知识库问答"))
         self.comboBox_4.setItemText(1, _translate("MainWindow", "畅聊"))
         self.page1_type_label_4.setText(_translate("MainWindow", "AI问答模式："))
         self.page1_type_label_5.setText(_translate("MainWindow", "输入你的问题："))
         self.cartoon_roomid_lineedit.setText(_translate("MainWindow", "30923980"))
         self.label_5.setText(_translate("MainWindow", "房间号："))
-        self.label_13.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#21ff06;\">· REC</span></p></body></html>"))
+        self.label_13.setText(_translate("MainWindow",
+                                         "<html><head/><body><p><span style=\" color:#21ff06;\">· REC</span></p></body></html>"))
         self.label_19.setText(_translate("MainWindow", "当前直播画面："))
         self.cartoon_videoplay_button.setText(_translate("MainWindow", "播放"))
         self.cartoon_videostop_button.setText(_translate("MainWindow", "停止"))
@@ -525,11 +527,12 @@ class Ui_MainWindow(object):
         self.cartoon_knowledgelst_box.setItemText(0, _translate("MainWindow", "知识库11"))
         self.cartoon_knowledgelst_box.setItemText(1, _translate("MainWindow", "知识库111"))
         self.label_77.setText(_translate("MainWindow", "正在回复："))
-        self.cartoon_queue1_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p></body></html>"))
+        self.cartoon_queue1_browser.setHtml(_translate("MainWindow",
+                                                       "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                       "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                       "p, li { white-space: pre-wrap; }\n"
+                                                       "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+                                                       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p></body></html>"))
         self.pushButton_29.setText(_translate("MainWindow", "删除"))
         self.label_78.setText(_translate("MainWindow", "用户："))
         self.cartoon_login_button.setText(_translate("MainWindow", "登录"))
@@ -538,21 +541,23 @@ class Ui_MainWindow(object):
         self.comboBox_26.setItemText(0, _translate("MainWindow", "哔哩哔哩直播"))
         self.comboBox_26.setItemText(1, _translate("MainWindow", "抖音"))
         self.comboBox_26.setItemText(2, _translate("MainWindow", "快手"))
-        self.cartoon_queue2_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p></body></html>"))
+        self.cartoon_queue2_browser.setHtml(_translate("MainWindow",
+                                                       "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                       "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                       "p, li { white-space: pre-wrap; }\n"
+                                                       "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+                                                       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p></body></html>"))
         self.label_80.setText(_translate("MainWindow", "回复信息列表："))
         self.pushButton_30.setText(_translate("MainWindow", "删除"))
         self.label_81.setText(_translate("MainWindow", "平台："))
         self.pushButton_31.setText(_translate("MainWindow", "删除"))
-        self.cartoon_replying_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
+        self.cartoon_replying_browser.setHtml(_translate("MainWindow",
+                                                         "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                         "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                         "p, li { white-space: pre-wrap; }\n"
+                                                         "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+                                                         "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
+                                                         "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
         self.cartoon_qrcodecancel_button.setText(_translate("MainWindow", "取消"))
         self.cartoon_channel_box.setItemText(0, _translate("MainWindow", "默认信号源"))
         self.cartoon_channel_box.setItemText(1, _translate("MainWindow", "输出信号源-1"))
@@ -566,13 +571,15 @@ class Ui_MainWindow(object):
         self.cartoon_speak_button.setText(_translate("MainWindow", "直接说"))
         self.cartoon_roomconnect_button.setText(_translate("MainWindow", "连接"))
         self.cartoon_nickname_label.setText(_translate("MainWindow", "无"))
-        self.cartoon_qrcodestatus_label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#108001;\">请扫描二维码↓</span></p></body></html>"))
+        self.cartoon_qrcodestatus_label.setText(_translate("MainWindow",
+                                                           "<html><head/><body><p><span style=\" color:#108001;\">请扫描二维码↓</span></p></body></html>"))
         self.test_button.setText(_translate("MainWindow", "测"))
-        self.llm_input_field.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.llm_input_field.setHtml(_translate("MainWindow",
+                                                "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                "p, li { white-space: pre-wrap; }\n"
+                                                "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+                                                "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.llm_input_field.setPlaceholderText(_translate("MainWindow", "请输入你想问的问题"))
         self.page1_title_label_3.setText(_translate("MainWindow", "本地问答模式"))
         self.comboBox_3.setItemText(0, _translate("MainWindow", "chatGLM-6b"))
@@ -584,9 +591,11 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "用户："))
         self.label_4.setText(_translate("MainWindow", "AI："))
         self.llm_sender_button.setText(_translate("MainWindow", "发送"))
-        self.label_9.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">数字人直播</span></p></body></html>"))
+        self.label_9.setText(_translate("MainWindow",
+                                        "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">数字人直播</span></p></body></html>"))
         self.label_10.setText(_translate("MainWindow", "当前直播画面："))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#21ff06;\">· REC</span></p></body></html>"))
+        self.label.setText(_translate("MainWindow",
+                                      "<html><head/><body><p><span style=\" color:#21ff06;\">· REC</span></p></body></html>"))
         self.shuziren_video_button.setText(_translate("MainWindow", "播放"))
         self.label_11.setText(_translate("MainWindow", "平台："))
         self.comboBox_2.setItemText(0, _translate("MainWindow", "哔哩哔哩直播"))
@@ -597,25 +606,28 @@ class Ui_MainWindow(object):
         self.shuziren_nickname_label.setText(_translate("MainWindow", "未登录"))
         self.label_14.setText(_translate("MainWindow", "回复信息列表："))
         self.label_15.setText(_translate("MainWindow", "正在回复："))
-        self.shuziren_replying_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
+        self.shuziren_replying_browser.setHtml(_translate("MainWindow",
+                                                          "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                          "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                          "p, li { white-space: pre-wrap; }\n"
+                                                          "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+                                                          "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
+                                                          "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
         self.label_16.setText(_translate("MainWindow", "等待回复↑："))
-        self.shuziren_queue1_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
-        self.shuziren_queue2_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
+        self.shuziren_queue1_browser.setHtml(_translate("MainWindow",
+                                                        "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                        "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                        "p, li { white-space: pre-wrap; }\n"
+                                                        "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+                                                        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
+                                                        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
+        self.shuziren_queue2_browser.setHtml(_translate("MainWindow",
+                                                        "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                        "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                        "p, li { white-space: pre-wrap; }\n"
+                                                        "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+                                                        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; 用户：无内容</p>\n"
+                                                        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&gt;&gt; AI：无内容</p></body></html>"))
         self.pushButton_3.setText(_translate("MainWindow", "删除"))
         self.pushButton_4.setText(_translate("MainWindow", "删除"))
         self.pushButton_5.setText(_translate("MainWindow", "删除"))
@@ -629,7 +641,8 @@ class Ui_MainWindow(object):
         __sortingEnabled = self.shuziren_script_listWidget.isSortingEnabled()
         self.shuziren_script_listWidget.setSortingEnabled(False)
         item = self.shuziren_script_listWidget.item(0)
-        item.setText(_translate("MainWindow", "大家好，我还是新主播，有很多不懂的地方，如果有什么地方做的不够的希望你们多多见谅，有什么建议也可以直接在评论区留言～"))
+        item.setText(_translate("MainWindow",
+                                "大家好，我还是新主播，有很多不懂的地方，如果有什么地方做的不够的希望你们多多见谅，有什么建议也可以直接在评论区留言～"))
         item = self.shuziren_script_listWidget.item(1)
         item.setText(_translate("MainWindow", "2"))
         item = self.shuziren_script_listWidget.item(2)
@@ -644,7 +657,8 @@ class Ui_MainWindow(object):
         self.shuziren_script_comboBox.setItemText(6, _translate("MainWindow", "下播话术"))
         self.shuziren_script_button.setText(_translate("MainWindow", "插入话术队列"))
         self.shuziren_qrcode_label.setText(_translate("MainWindow", "二维码"))
-        self.shuziren_qrcodestatus_label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#108001;\">请扫描二维码↓</span></p></body></html>"))
+        self.shuziren_qrcodestatus_label.setText(_translate("MainWindow",
+                                                            "<html><head/><body><p><span style=\" color:#108001;\">请扫描二维码↓</span></p></body></html>"))
         self.shuziren_qrcodecancel_button.setText(_translate("MainWindow", "取消"))
         self.shuziren_roomid_lineEdit.setText(_translate("MainWindow", "30923980"))
         self.shuziren_roomid_button.setText(_translate("MainWindow", "连接"))
@@ -662,4 +676,6 @@ class Ui_MainWindow(object):
         self.menu.setTitle(_translate("MainWindow", "调试"))
         self.menu_2.setTitle(_translate("MainWindow", "问答"))
         self.menu_3.setTitle(_translate("MainWindow", "直播"))
+
+
 from EWVideoWidget import EWVideoWidget

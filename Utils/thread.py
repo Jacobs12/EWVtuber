@@ -57,7 +57,7 @@ class Thread(QObject):
         #         print(message)
         #         self.window.cartoon_queue1_browser.setText(message)
         # """
-        super().__init__()
+        super(Thread, self).__init__()
 
     noti: str = None
     func = None
@@ -73,7 +73,7 @@ class Thread(QObject):
         t.target = self
         t.start()
 
-    def start_parameter(self,func,parameter):
+    def start_parameter(self, func, parameter):
         self.recive_event_signal.connect(self.did_recieve_signal)
         t = MyThread()
         self.thread = t
@@ -82,7 +82,6 @@ class Thread(QObject):
         t.func = func
         t.target = self
         t.start()
-
 
     def get_mainloop(self, message: str, func):
         self.func = func
