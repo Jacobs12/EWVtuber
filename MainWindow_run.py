@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import *
 # from ViewController.cartoon_controller import CartoonController
 # from ViewController.shuziren_controller import ShuzirenController
 # from ViewController.llm_controller import LLMController
-# from ViewController.setting_controller import SettingController
+from ViewController.setting_controller import SettingController
 
 
 # python -m PyQt5.uic.pyuic MainWindow.ui -o MainWindow.py
@@ -25,7 +25,7 @@ class MainWindowUI(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         self.setup_window()
-        # self.setup_tabbar_button()
+        self.setup_tabbar_button()
         # self.setup_pages()
 
     def setup_window(self):
@@ -34,13 +34,13 @@ class MainWindowUI(QMainWindow, Ui_MainWindow):
         self.setWindowTitle('光线AI虚拟主播系统')  # 设置该窗口的名称
 #
 #     # 设置菜单栏按钮
-#     def setup_tabbar_button(self):
+    def setup_tabbar_button(self):
 #         self.tab_bilibili_button.clicked.connect(self.bilibili_button_click)
 #         self.tab_llm_button.clicked.connect(self.llm_button_click)
 #         self.tab_shuziren_button.clicked.connect(self.shuziren_button_click)
 #         self.tab_knowledge_button.clicked.connect(self.knowledge_button_click)
 #         self.tab_knowledgemanage_button.clicked.connect(self.knowledge_manage_click)
-#         self.tab_ready_button.clicked.connect(self.setting_button_click)
+        self.tab_ready_button.clicked.connect(self.setting_button_click)
 #
 #     # 设置应用界面
 #     def setup_pages(self):
@@ -88,11 +88,11 @@ class MainWindowUI(QMainWindow, Ui_MainWindow):
 #
 #     # 设置设置界面
 #
-#     setting_controller: SettingController = None
-#
-#     def setup_setting_homepage(self):
-#         print('')
-#         self.setting_controller = SettingController(window=self)
+    setting_controller: SettingController = None
+
+    def setup_setting_homepage(self):
+        print('')
+        self.setting_controller = SettingController(window=self)
 #
 # # """
 # # ===========================================================================
@@ -115,5 +115,6 @@ class MainWindowUI(QMainWindow, Ui_MainWindow):
 #     def knowledge_manage_click(self):
 #         self.stackedWidget.setCurrentIndex(4)
 #
-#     def setting_button_click(self):
-#         self.stackedWidget.setCurrentIndex(5)
+    def setting_button_click(self):
+        self.setup_setting_homepage()
+        self.stackedWidget.setCurrentIndex(5)

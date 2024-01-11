@@ -18,14 +18,16 @@ Mails:fengtao23@mails.ucas.ac.cn
 import sys
 import time
 
+import Tools.audio
 from MainWindow import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QApplication, QDesktopWidget, QHBoxLayout, QPushButton, QWidget
 from PyQt5.QtGui import QIcon
 from MainWindow_run import MainWindowUI
 
-
 # import sys
 # from PyQt5.QtWidgets import QWidget, QApplication
+from Tools.audio import *
+
 
 # python=3.9.18
 

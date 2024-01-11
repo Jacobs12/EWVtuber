@@ -8,88 +8,103 @@ Mails:fengtao23@mails.ucas.ac.cn
 """
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject
 
+# 强引用对象，防止内存被提前释放
+thread_queue: [] = []
 
-class MyThread(QThread):
-    func = None
+
+class EWThreadObject(QThread):
+    process_handler = None
+    completion_handler = None
+    value_input = None
     signal = None
-    parameter = None
 
     def __init__(self):
         super().__init__()
 
     def run(self):
-        if self.func is not None:
-            if self.parameter is not None:
-                self.func(self.parameter)
+        if self.process_handler is not None:
+            if self.value_input is not None:
+                self.process_handler(self.value_input)
             else:
-                self.func()
+                self.process_handler()
+        self.get_mainloop(self.value_input)
 
-    def get_mainloop(self, message: str):
+    def get_mainloop(self, message):
         print(message)
+        value_output = tuple()
+        if message is not None:
+            value_output = tuple(message)
         if self.signal is not None:
-            self.signal.emit(message)
+            self.signal.emit(value_output)
 
 
-class Thread(QObject):
-    thread: MyThread = None
+class EWThread(QObject):
+    thread: EWThreadObject = None
     tag: int = 0
 
     def __init__(self):
         # """
-        #     t = None
+        # from Utils.threading import EWThread
         #
-        #     def testt(self):
-        #         t = Thread()
-        #         self.t = t
-        #         self.t.start(func=self.run)
+        # def process_handler(value_input = None):
+        #     print(value)
+        #     time.sleep(5)
+        #     print('process_handler')
         #
-        #     # 子线程运行的内容
-        #     async def run(self):
-        #         print('子线程开始')
-        #         time.sleep(5)
-        #         print('子线程回调')
-        #         # 返回主线程
-        #         self.t.get_mainloop(message='接收到子线程的消息了',func=self.callback)
+        # def completion_handler(value_input = None):
+        #     print('completion_handler')
         #
-        #     # 主线程运行的内容
-        #     def callback(self,message):
-        #         print('主')
-        #         print(message)
-        #         self.window.cartoon_queue1_browser.setText(message)
+        # thread = EWThread()
+        # thread.start(process_handler=process_handler, completion_handler=completion_handler)
         # """
-        super(Thread, self).__init__()
+        super().__init__()
 
-    noti: str = None
-    func = None
-    recive_event_signal: pyqtSignal = pyqtSignal(str)
+    completion_handler = None
+    recive_event_signal: pyqtSignal = pyqtSignal(tuple)
 
-    def start(self, func):
-        print('11111111111')
+    def start(self, value_input=None, process_handler=None, completion_handler=None):
         self.recive_event_signal.connect(self.did_recieve_signal)
-        t = MyThread()
+        t = EWThreadObject()
         self.thread = t
         t.signal = self.recive_event_signal
-        t.func = func
+        t.process_handler = process_handler
+        t.completion_handler = completion_handler
+        t.value_input = value_input
+        self.completion_handler = completion_handler
         t.target = self
         t.start()
+        add_thread_queue(self)
 
-    def start_parameter(self, func, parameter):
-        self.recive_event_signal.connect(self.did_recieve_signal)
-        t = MyThread()
-        self.thread = t
-        t.signal = self.recive_event_signal
-        t.parameter = parameter
-        t.func = func
-        t.target = self
-        t.start()
+    def did_recieve_signal(self, value):
+        # print(f'接收到消息{value}')
+        if self.completion_handler is not None:
+            if value is not None and len(value) != 0:
+                self.completion_handler(value)
+            else:
+                self.completion_handler()
+        remove_thread_queue(self)
 
-    def get_mainloop(self, message: str, func):
-        self.func = func
-        self.thread.get_mainloop(message=message)
 
-    def did_recieve_signal(self, noti: str):
-        print('接收到消息')
-        self.func(noti)
+thread_tag: int = 0
 
-    def destroy(self):
-        self.thread.exit()
+
+# 强引用对象，防止内存被提前释放
+def add_thread_queue(thread: EWThread):
+    global thread_tag
+    tag = thread_tag
+    thread_tag += 1
+    thread.tag = tag
+    print(tag)
+    thread_queue.append(thread)
+
+
+# 子进程已完成，移出引用序列，释放对象内存
+def remove_thread_queue(thread: EWThread):
+    result = None
+    # print(f'移除前{thread_queue}')
+    for obj in thread_queue:
+        if obj.tag == thread.tag:
+            result = obj
+            break
+    thread_queue.remove(result)
+    # print(f'移除后{thread_queue}')
