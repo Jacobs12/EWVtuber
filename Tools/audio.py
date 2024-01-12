@@ -55,10 +55,12 @@ class AudioPlayer(object):
         self.player.set_volume(1.0)
         self.player.play(1)
 
+    process_handler = None
     completion_handler = None
 
-    def play_completion_handler(self, filename: str, completion):
+    def play_completion_handler(self, filename: str, process_handler=None, completion=None):
         self.completion_handler = completion
+        self.process_handler = process_handler
         self.play(filename=filename)
         self.start_timer()
 
@@ -76,7 +78,9 @@ class AudioPlayer(object):
         t = int(current_postion / 1000)
         minute = int(t / 60)
         sec = int(t % 60)
-        print(f'当前播放进度：{"%02d"%minute}:{"%02d"%sec}')
+        if self.process_handler is not None:
+            self.process_handler(current_postion)
+        print(f'当前播放进度：{"%02d" % minute}:{"%02d" % sec}')
         timer = threading.Timer(1.0, self.refresh)
         timer.start()
 
@@ -107,6 +111,7 @@ class AudioPlayer(object):
             print('audio completion')
             if completion_handler is not None:
                 completion_handler()
+
         platform = Utils.utils.get_system_platform()
         if platform == 'win':
             self.play_completion_handler(filename='TTmp\\1.mp3', completion=completion)
