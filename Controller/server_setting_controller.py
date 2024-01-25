@@ -11,13 +11,18 @@ from Controller.server_base_controller import BaseController
 from PySide6.QtWidgets import QFileDialog
 import Utils.config as config
 from Utils.thread import EWThread as Thread
+from Tools.player import AudioPlayer
+import Tools.speech as speech
+
 
 class SettingController(BaseController):
+    audio_player: AudioPlayer = None
+
     def setup_ui(self):
         self.setup_button()
         self.setup_default()
 
-    speaker_array:[] = []
+    speaker_array: [] = []
 
     def setup_default(self):
         project_directory = Utils.config.get_project_directory()
@@ -33,18 +38,17 @@ class SettingController(BaseController):
             for item in self.speaker_array:
                 name = item['name']
                 gender = item['gender']
-                if 'zh-' not in name:
-                    continue
                 obj = f'{name} ({gender})'
                 speaker_array.append(obj)
             self.window.setting_speaker_combo.clear()
             self.window.setting_speaker_combo.addItems(speaker_array)
+
         thread = Thread()
-        thread.start(value_input='',process_handler=process,completion_handler=finished)
+        thread.start(value_input='', process_handler=process, completion_handler=finished)
 
     def setup_button(self):
         self.window.setting_projectfolder_button.clicked.connect(self.select_project_click)
-
+        self.window.setting_speaker_button.clicked.connect(self.test_button_click)
 
     def select_project_click(self):
         project_directory = Utils.config.get_project_directory()
@@ -55,3 +59,19 @@ class SettingController(BaseController):
         project_directory = Utils.config.get_project_directory()
         self.window.setting_projectfolder_label.setText(project_directory)
 
+    def test_button_click(self):
+        if self.audio_player is None:
+            self.audio_player = AudioPlayer()
+        text = '这是一个语音测试'
+        index = self.window.setting_speaker_combo.currentIndex()
+        # print(index)
+        obj: {} = self.speaker_array[index]
+        speaker = obj['name']
+        # print(speaker)
+        speech.text_to_speech(text=text, speaker=speaker)
+
+        def completion():
+            print('')
+
+        self.audio_player.play_completion_handler(speech.OUTPUT, completion=completion)
+        print(text)

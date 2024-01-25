@@ -50,19 +50,25 @@ def get_speaker_array() -> []:
     except FileNotFoundError:
         print('FileNotFoundError')
     except Exception:
-        print(Exception)
+        print('Exception')
     if result == '':
         return []
     temp_array = result.splitlines()
-    speaker_array = []
+    original_array = []
     item = {}
     for obj in temp_array:
         if 'Name' in obj:
             item['name'] = obj.replace('Name: ','')
         if 'Gender' in obj:
             item['gender'] = obj.replace('Gender: ','')
-            speaker_array.append(item)
+            original_array.append(item)
             item = {}
+    speaker_array = []
+    for obj in original_array:
+        name = obj['name']
+        if 'zh-' not in name:
+            continue
+        speaker_array.append(obj)
     return speaker_array
 
 def set_speaker(speaker:str):

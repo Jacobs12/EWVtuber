@@ -30,7 +30,7 @@ class EWThreadObject(QThread):
         self.get_mainloop(self.value_input)
 
     def get_mainloop(self, message):
-        print(message)
+        # print(message)
         value_output = tuple()
         if message is not None:
             value_output = tuple(message)
@@ -94,7 +94,7 @@ def add_thread_queue(thread: EWThread):
     tag = thread_tag
     thread_tag += 1
     thread.tag = tag
-    print(tag)
+    # print(tag)
     thread_queue.append(thread)
 
 

@@ -32,7 +32,7 @@
      <rect>
       <x>130</x>
       <y>0</y>
-      <width>681</width>
+      <width>821</width>
       <height>601</height>
      </rect>
     </property>
@@ -80,7 +80,7 @@
       <property name="geometry">
        <rect>
         <x>35</x>
-        <y>90</y>
+        <y>130</y>
         <width>58</width>
         <height>16</height>
        </rect>
@@ -93,7 +93,7 @@
       <property name="geometry">
        <rect>
         <x>106</x>
-        <y>80</y>
+        <y>120</y>
         <width>221</width>
         <height>32</height>
        </rect>
@@ -104,17 +104,186 @@
        </property>
       </item>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="setting_speaker_button">
       <property name="geometry">
        <rect>
         <x>350</x>
-        <y>80</y>
+        <y>120</y>
         <width>100</width>
         <height>32</height>
        </rect>
       </property>
       <property name="text">
        <string>试音</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>95</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>待机(standby)：</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="setting_standby_button">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>90</y>
+        <width>100</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>打开</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>95</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>话术(live_script)：</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="setting_script_button">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>90</y>
+        <width>100</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>打开</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="setting_qa_button">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>90</y>
+        <width>100</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>打开</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>95</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>问答(qa)：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>65</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>数字人模型(resource)：</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="setting_resource_button">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>60</y>
+        <width>100</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>打开</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="setting_prebuild_button">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>60</y>
+        <width>100</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>预处理 ▶</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="setting_standby_label">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>95</y>
+        <width>41</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ok</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="setting_script_label">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>95</y>
+        <width>41</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ok</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="setting_qa_label">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>95</y>
+        <width>41</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ok</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="setting_resource_label">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>65</y>
+        <width>41</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ok</string>
       </property>
      </widget>
     </widget>

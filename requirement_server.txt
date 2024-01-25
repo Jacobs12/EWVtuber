@@ -3,3 +3,4 @@ pygame
 python-vlc
 opencv-python
 edge-tts==6.1.9
+sounddevice
