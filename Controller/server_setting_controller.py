@@ -67,7 +67,6 @@ class SettingController(BaseController):
         # print(index)
         obj: {} = self.speaker_array[index]
         speaker = obj['name']
-        # print(speaker)
         speech.text_to_speech(text=text, speaker=speaker)
 
         def completion():
