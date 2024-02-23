@@ -73,4 +73,4 @@ class SettingController(BaseController):
             print('')
 
         self.audio_player.play_completion_handler(speech.OUTPUT, completion=completion)
-        print(text)
+        print(text) 
