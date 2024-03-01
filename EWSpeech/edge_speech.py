@@ -19,6 +19,7 @@ OUTPUT = "Buffer/Audio/speech.mp3"
 # OUTPUT = "Buffer/Audio/speech.mp3"
 VOICE = "zh-CN-XiaoyiNeural"
 # VOICE = "zh-CN-YunxiaNeural"
+# VOICE = "zh-CN-YunjianNeural"
 
 
 # WEBVTT_FILE = "test.vtt"
