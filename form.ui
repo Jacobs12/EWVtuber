@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="tab_setting_button">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -35,6 +35,9 @@
       <width>821</width>
       <height>601</height>
      </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QLabel" name="label">
@@ -287,7 +290,114 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2"/>
+    <widget class="QWidget" name="page_2">
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>40</y>
+        <width>58</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>说话人：</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="tts_speaker_box">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>32</y>
+        <width>221</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>加载中...</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="tts_start_button">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>240</y>
+        <width>100</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>合成</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>90</y>
+        <width>58</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>语速：</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="tts_speed_box">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>86</y>
+        <width>62</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <double>-50.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>999.990000000000009</double>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="tts_text_view">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>130</y>
+        <width>401</width>
+        <height>141</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tts_folder_button">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>200</y>
+        <width>111</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>打开输出文件夹</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="tab_tts_button">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>文本语音合成</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

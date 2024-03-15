@@ -37,13 +37,19 @@ VOICE = "zh-CN-XiaoyiNeural"
 #     return OUTPUT
 # class EdgeSpeech(object):
 
-async def generate_audio(text: str, speaker: str = VOICE):
-    communicate = edge_tts.Communicate(text, speaker, rate='+0%')
-    await communicate.save(OUTPUT)
+async def generate_audio(text: str, speaker: str = VOICE,speed:float=0.0,output:str=''):
+    rate = f'{int(speed)}%'
+    if speed >= 0:
+        rate = f'+{rate}'
+    communicate = edge_tts.Communicate(text, speaker, rate=rate)
+    filepath = OUTPUT
+    if filepath != '':
+        filepath = output
+    await communicate.save(filepath)
 
 
-def text_to_speech(text: str, speaker: str = VOICE):
-    asyncio.run(generate_audio(text=text, speaker=speaker))
+def text_to_speech(text: str, speaker: str = VOICE,speed:float=0.0,output:str=''):
+    asyncio.run(generate_audio(text=text, speaker=speaker,speed=speed,output=output))
 
 # async def _main() -> None:
 #     communicate = edge_tts.Communicate(TEXT, VOICE)

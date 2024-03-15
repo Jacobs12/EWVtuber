@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QLabel, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QStackedWidget,
-    QStatusBar, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDoubleSpinBox, QLabel,
+    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
+    QStackedWidget, QStatusBar, QTextEdit, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -26,9 +26,9 @@ class Ui_MainWindow(object):
         MainWindow.resize(1080, 720)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(10, 10, 100, 32))
+        self.tab_setting_button = QPushButton(self.centralwidget)
+        self.tab_setting_button.setObjectName(u"tab_setting_button")
+        self.tab_setting_button.setGeometry(QRect(10, 10, 100, 32))
         self.stackedWidget = QStackedWidget(self.centralwidget)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setGeometry(QRect(130, 0, 821, 601))
@@ -95,7 +95,34 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
+        self.label_7 = QLabel(self.page_2)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(40, 40, 58, 16))
+        self.tts_speaker_box = QComboBox(self.page_2)
+        self.tts_speaker_box.addItem("")
+        self.tts_speaker_box.setObjectName(u"tts_speaker_box")
+        self.tts_speaker_box.setGeometry(QRect(100, 32, 221, 32))
+        self.tts_start_button = QPushButton(self.page_2)
+        self.tts_start_button.setObjectName(u"tts_start_button")
+        self.tts_start_button.setGeometry(QRect(490, 240, 100, 32))
+        self.label_8 = QLabel(self.page_2)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setGeometry(QRect(40, 90, 58, 16))
+        self.tts_speed_box = QDoubleSpinBox(self.page_2)
+        self.tts_speed_box.setObjectName(u"tts_speed_box")
+        self.tts_speed_box.setGeometry(QRect(110, 86, 62, 22))
+        self.tts_speed_box.setMinimum(-50.000000000000000)
+        self.tts_speed_box.setMaximum(999.990000000000009)
+        self.tts_text_view = QTextEdit(self.page_2)
+        self.tts_text_view.setObjectName(u"tts_text_view")
+        self.tts_text_view.setGeometry(QRect(40, 130, 401, 141))
+        self.tts_folder_button = QPushButton(self.page_2)
+        self.tts_folder_button.setObjectName(u"tts_folder_button")
+        self.tts_folder_button.setGeometry(QRect(480, 200, 111, 32))
         self.stackedWidget.addWidget(self.page_2)
+        self.tab_tts_button = QPushButton(self.centralwidget)
+        self.tab_tts_button.setObjectName(u"tab_tts_button")
+        self.tab_tts_button.setGeometry(QRect(10, 50, 100, 32))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -107,12 +134,15 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.stackedWidget.setCurrentIndex(1)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u914d\u7f6e", None))
+        self.tab_setting_button.setText(QCoreApplication.translate("MainWindow", u"\u914d\u7f6e", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u9879\u76ee\u6587\u4ef6\u5939\uff1a", None))
         self.setting_projectfolder_button.setText(QCoreApplication.translate("MainWindow", u"\u9009\u62e9", None))
         self.setting_projectfolder_label.setText(QCoreApplication.translate("MainWindow", u"\u672a\u9009\u62e9", None))
@@ -133,5 +163,12 @@ class Ui_MainWindow(object):
         self.setting_script_label.setText(QCoreApplication.translate("MainWindow", u"ok", None))
         self.setting_qa_label.setText(QCoreApplication.translate("MainWindow", u"ok", None))
         self.setting_resource_label.setText(QCoreApplication.translate("MainWindow", u"ok", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u8bf4\u8bdd\u4eba\uff1a", None))
+        self.tts_speaker_box.setItemText(0, QCoreApplication.translate("MainWindow", u"\u52a0\u8f7d\u4e2d...", None))
+
+        self.tts_start_button.setText(QCoreApplication.translate("MainWindow", u"\u5408\u6210", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u8bed\u901f\uff1a", None))
+        self.tts_folder_button.setText(QCoreApplication.translate("MainWindow", u"\u6253\u5f00\u8f93\u51fa\u6587\u4ef6\u5939", None))
+        self.tab_tts_button.setText(QCoreApplication.translate("MainWindow", u"\u6587\u672c\u8bed\u97f3\u5408\u6210", None))
     # retranslateUi
 
